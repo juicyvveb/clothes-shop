@@ -40,10 +40,10 @@ body {
 
 .content {
     transition: all 0.3s ease-out;
-    transform: translate(0,0);
+    /* transform: translate(0,0); */
 }
 
 .content.move {
-  transform: translateX(20%);
+  /* transform: translateX(20%); */
 }
 </style>

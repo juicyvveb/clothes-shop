@@ -83,10 +83,10 @@ export default {
         justify-content: space-between;
         position: relative;
         align-items: baseline;
-        position: sticky;
+        position: fixed;
         top: 0; 
         left: 0;
-        bottom: 0;
+        
         .logo {
             width: 7vw;
             img {
@@ -126,7 +126,7 @@ export default {
         } 
 
         .wrapper.active {
-            transform: translate(-20%, 0);
+            transform: translate(0, 0);
             visibility: visible;
         }
         .user {
