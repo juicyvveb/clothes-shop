@@ -5,7 +5,7 @@
         </div>
         <Burger/>
 
-        <div class="wrapper" @click.self="closeMenu($event)">
+        <div class="wrapper active" @click.self="closeMenu($event)">
             <div class="menu">
                 <ul class="menu-list">
                     <li>women</li>
@@ -19,7 +19,10 @@
                     <li>inst</li>
                     <li>inst</li>
                 </ul>
-                <input class="menu-search">
+                <form class="menu-search">
+                    <input  id="search">
+                    <button></button>
+                </form>
             </div>
         </div>
 
@@ -113,11 +116,36 @@ export default {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
+                position: relative;
                 ul {
                     order: 3;
                 }
                 &-search {
                     order: 1;
+                    width: 80%;
+                    background: white;
+                    border-radius: 20px;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    overflow: hidden;
+                    border: 2px solid black;
+                    input {
+                        width: 80%;
+                        max-height: 100%;
+                        box-sizing: border-box;
+                        border: none;
+                        padding: 4% 0% 4% 0%;
+                    }
+                    button {
+                        width: 4vw;
+                        min-height: 4vw;
+                        background-size: contain;
+                        border: none;
+                        background-color: rgba(0,0,0,0);
+                        background-image: url('../assets/img/search.png');
+                        background-repeat: no-repeat;
+                    }
                 }
                 &-contacts {
                     margin-top: auto;
