@@ -19,12 +19,17 @@
                     <li>inst</li>
                     <li>inst</li>
                 </ul>
-                <form class="menu-search">
+                <form class="menu-search search-input">
                     <input  id="search">
                     <button></button>
                 </form>
             </div>
         </div>
+
+        <form class="menu-search search-input">
+                    <input  id="search">
+                    <button></button>
+        </form>
 
         <div class="user">
             <div class="user-checkout user-icon">
@@ -121,6 +126,19 @@ export default {
                     order: 3;
                 }
                 &-search {
+                    display: block;
+                }
+                &-contacts {
+                    margin-top: auto;
+                }
+            }
+        } 
+
+        .wrapper.active {
+            transform: translate(0, 0);
+            visibility: visible;
+        }
+        .search-input {
                     order: 1;
                     width: 80%;
                     background: white;
@@ -142,20 +160,14 @@ export default {
                         min-height: 4vw;
                         background-size: contain;
                         border: none;
+                        background-position: center;
                         background-color: rgba(0,0,0,0);
                         background-image: url('../assets/img/search.png');
                         background-repeat: no-repeat;
                     }
                 }
-                &-contacts {
-                    margin-top: auto;
-                }
-            }
-        } 
-
-        .wrapper.active {
-            transform: translate(0, 0);
-            visibility: visible;
+        .search-input {
+            display: none;
         }
         .user {
             display: flex;
@@ -171,6 +183,7 @@ export default {
 @media (min-width: $laptop){
 .header {
         padding: 2% 5% 2% 5%;
+        align-items: center;
         .logo {
             width: 5vw;
         }
@@ -178,6 +191,8 @@ export default {
         .user {
             display: flex;
             width: 15%;
+            order: 5;
+            align-items: center;
             &-icon {
                 box-sizing: border-box;
                 margin-right: 30%;
@@ -190,25 +205,25 @@ export default {
             }
         }
 
-        .wrapper {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: rgba(0,0,0,0.3);
-            width: 110%;
-            // height: 100vh;
-            display: flex;
-            transition: all .3s ease-out;
-            transform: translate(-100%, 0);
-            visibility: hidden;
-            justify-content: flex-start;
-            
-        } 
+        .search-input {
+                    display: flex;
+                    order: 3;
+                    width: 35%;
 
-        .wrapper.active {
-            transform: translate(-20%, 0);
-            visibility:visible;
-        }
-}
+                    button {
+                        width: 3vw;
+                        height: 3vw;
+                    }
+                }
+        
+        .wrapper {
+            .menu {
+                width: 40%;
+                &-search {
+                    display: none;
+                }
+            }
+        } 
+    }
 }
 </style>
