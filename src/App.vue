@@ -1,30 +1,40 @@
 <template>
+  <Menu/>
   <div class="content">
       <Header/>
-      <img alt="Vue logo" src="./assets/logo.png">
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <div class="superContainer">
+            <img alt="Vue logo" src="./assets/logo.png">
+            <HelloWorld msg="Welcome to Your Vue.js App"/>
+            <HelloWorld msg="Welcome to Your Vue.js App"/>
+            <HelloWorld msg="Welcome to Your Vue.js App"/>
+            <HelloWorld msg="Welcome to Your Vue.js App"/>
+            <HelloWorld msg="Welcome to Your Vue.js App"/>
+      </div>   
   </div>
   
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Header from './components/Header.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import Header from './components/Header.vue';
+import Menu from './components/Menu.vue';
+import emitter from 'tiny-emitter/instance';
+
 
 export default {
-  name: 'App',
+  mounted(){
+    emitter.on('openMenu', () => {
+    })
+  },
   components: {
     HelloWorld,
     Header,
+    Menu,
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
 }
@@ -35,15 +45,20 @@ body {
   text-align: center;
   color: #2c3e50;
   margin: 0;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 .content {
-    transition: all 0.3s ease-out;
-    /* transform: translate(0,0); */
+  position: relative;
+  .header, .superContainer {
+    transform: translate(0,0);  
+    transition: all .3s ease-out;
+  }
+    
 }
 
-.content.move {
-  /* transform: translateX(20%); */
+.content.move .header, .content.move .superContainer{
+    transform: translateX(20%);
+    transition: all .3s ease-out;
 }
 </style>
