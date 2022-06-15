@@ -4,12 +4,7 @@
             <img class="logo-img" src="../assets/logo.png">
         </div>
         <Burger/>
-
-        <form class="search-input">
-                    <input  id="search">
-                    <button></button>
-        </form>
-
+        <Search/>
         <div class="user">
             <div class="user-checkout user-icon">
                 <img src="../assets/img/user.svg" alt="user">
@@ -23,6 +18,7 @@
 
 <script>
 import Burger from './Burger.vue';
+import Search from './Search.vue';
 
 
 export default {
@@ -32,6 +28,7 @@ export default {
     },
     components: {
         Burger,
+        Search,
     },
 }
 </script>
@@ -99,16 +96,11 @@ export default {
             }
         }
 
-        .search-input {
-                    display: flex;
-                    order: 3;
-                    width: 35%;
-
-                    button {
-                        width: 3vw;
-                        height: 3vw;
-                    }
-                }
+        .search-input{
+            display: flex;
+            width: 25%;
+            margin-right: 5%;
+        }
     }
 }
 </style>

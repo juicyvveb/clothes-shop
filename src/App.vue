@@ -35,6 +35,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/scss/general.scss';
 body {
   margin: 0;
 }
@@ -60,5 +61,12 @@ body {
 .content.move .header, .content.move .superContainer{
     transform: translateX(20%);
     transition: all .3s ease-out;
+}
+
+
+@media (min-width: $laptop) {
+  .content.move .header, .content.move .superContainer{
+    transform: translateX(10%);
+  }
 }
 </style>

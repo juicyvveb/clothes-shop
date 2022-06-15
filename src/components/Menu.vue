@@ -15,24 +15,14 @@
                     <li>inst</li>
                     <li>inst</li>
                 </ul>
-                <form class="menu-search search-input">
-                        <input  id="search">
-                        <button></button>
-                </form>
-                <Teleport to=".header">
-                    <form class="menu-search search-input">
-                        <input  id="search">
-                        <button></button>
-                    </form>
-                </Teleport>
-                <Header/>
+               <Search/>
     </div>
     </div>
 </template>
 
 <script>
 import emitter from 'tiny-emitter/instance';
-
+import Search from './Search.vue';
 export default {
     data(){
         return {
@@ -40,7 +30,7 @@ export default {
         }
     },
     components: {
-        Header: () => import ('./Header.vue')
+        Search,
     },
     mounted(){
         emitter.on('openMenu', this.openMenu)
@@ -87,47 +77,27 @@ export default {
                 ul {
                     order: 3;
                 }
-                &-search {
-                    display: block;
-                }
                 &-contacts {
                     margin-top: auto;
                 }
             }
 
-        .search-input {
-                    order: 1;
-                    width: 80%;
-                    background: white;
-                    border-radius: 20px;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    overflow: hidden;
-                    border: 2px solid black;
-                    input {
-                        width: 80%;
-                        max-height: 100%;
-                        box-sizing: border-box;
-                        border: none;
-                        padding: 4% 0% 4% 0%;
-                    }
-                    button {
-                        width: 4vw;
-                        min-height: 4vw;
-                        background-size: contain;
-                        border: none;
-                        background-position: center;
-                        background-color: rgba(0,0,0,0);
-                        background-image: url('../assets/img/search.png');
-                        background-repeat: no-repeat;
-                    }
-                }
+        
 
         } 
 
         .wrapper.open {
             transform: translateX(0)
         }
+@media(min-width: $laptop){
+    .wrapper {
+        .menu {
+            width: 35%;
+            }
+        .search-input{
+            display: none;
+            }
+    } 
+}
 </style>
 
