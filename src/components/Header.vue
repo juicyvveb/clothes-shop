@@ -4,6 +4,9 @@
             <img class="logo-img" src="../assets/logo.png">
         </div>
         <Burger/>
+        <nav class="nav">
+            <Menu/>
+        </nav>
         <Search/>
         <div class="user">
             <div class="user-checkout user-icon">
@@ -13,12 +16,16 @@
                 <img src="../assets/img/cart.svg" alt="card">
             </div>
         </div>
+        <div class="tel">
+            <a class="tel-link" href="tel:+74951234567">+1 912-252-7350</a>
+        </div>
     </div>
 </template>
 
 <script>
 import Burger from './Burger.vue';
 import Search from './Search.vue';
+import Menu from './Menu.vue';
 
 
 export default {
@@ -29,6 +36,7 @@ export default {
     components: {
         Burger,
         Search,
+        Menu,
     },
 }
 </script>
@@ -68,7 +76,9 @@ export default {
         .search-input {
             display: none;
         }
-        
+        .tel {
+            display: none;
+        }
 }
 
 @media (min-width: $laptop){
@@ -100,6 +110,57 @@ export default {
             display: flex;
             width: 25%;
             margin-right: 5%;
+        }
+    }
+}
+
+@media(min-width: $desktop){
+    .header {
+        padding: 1% 4% 1% 4%;
+        .logo {
+            width: 3vw;
+        }
+
+        .user {
+            width: 7%;
+            &-icon {
+                box-sizing: border-box;
+                margin-right: 30%;
+                &:last-child{
+                    margin-right: 0;
+                }
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+        .nav {
+            flex-grow: 2;
+            display: flex;
+            max-width: 30%;
+        }
+        .search-input {
+            width: 15%;
+            
+        }
+        .tel {
+            display: block;
+            order: 6;
+                &-link {
+                text-decoration: none;
+                position: relative;
+                color: black;
+                    &::before{
+                    content: "";
+                    width: 3vw;
+                    height: 3vw;
+                    display: block;
+                    position: absolute;
+                    left:0;
+                    top: 0;
+                    background: #000;
+                    }
+                }    
         }
     }
 }

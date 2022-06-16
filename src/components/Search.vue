@@ -50,4 +50,13 @@ export default {
         }
     }
 }
+@media (min-width: $desktop) {
+    .search-input {
+        button {
+            width: 1.5vw;
+            min-height: 1.5vw;
+        }
+    }
+}
+
 </style>

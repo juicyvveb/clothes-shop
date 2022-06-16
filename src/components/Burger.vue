@@ -96,4 +96,10 @@ export default {
         }
     }
 }
+
+@media(min-width: $desktop){
+    .burger{
+        display: none;
+    }
+}
 </style>

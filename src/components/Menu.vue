@@ -99,5 +99,35 @@ export default {
             }
     } 
 }
+
+@media (min-width: $desktop) {
+    .wrapper {
+        display: none;
+    }
+    .nav {
+        
+        .wrapper {
+            display: flex;
+            transform: none;
+            background: rgba(0,0,0,0.6);
+            width: 100%;
+            height: auto;
+            display: flex;
+            position: relative;
+            .menu {
+                width: 100%;
+                padding: 0;
+                &-contacts {
+                    display: none;
+                }
+                &-list {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
 </style>
 
