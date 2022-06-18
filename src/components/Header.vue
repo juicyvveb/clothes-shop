@@ -106,11 +106,6 @@ export default {
                     max-width: 100%;
                 }
             }
-            &-tel {
-                span {
-                    display: none;
-                }
-            }
         }
 
         .search-input{
@@ -135,6 +130,16 @@ export default {
                 max-width: 2vw;
                 box-sizing: border-box;
                 margin-right: auto;
+                cursor: pointer;
+                padding: 0;
+                transition: all .3s ease-in;
+                &:hover {
+                    padding: 0.3vw;
+                    img {
+                        opacity: 0.5;
+                        transition: all .3s ease-in;
+                    }         
+                }
                 &:last-child{
                     margin-right: 0;
                 }
@@ -144,11 +149,31 @@ export default {
             }
             &-tel {
                 display: block;
+                position: relative;
+                span {
+                    opacity: 0;
+                    visibility:hidden;
+                    position: absolute;
+                    word-break:keep-all;
+                    top: 0;
+                    left: 0;
+                    transform: translate(-100%, 50%);
+                    background: white;
+                    padding: 15%;
+                    color: black;
+                    width: max-content;
+                    border: 1px solid black;
+                    transition: all .3s ease-out;
+                    border-radius: 5px 0px 5px 0px;
+                    pointer-events: none;
+                }
             }
             &-tel:hover {
                 span {
-                    display: block;
-                    position: absolute;
+                    transition: all .3s ease-out;
+                    transform: translate(-100%, 0%);                 
+                    opacity: 100%;
+                    visibility: visible;   
                 }
             }
         }
@@ -163,4 +188,5 @@ export default {
         }
     }
 }
+
 </style>
