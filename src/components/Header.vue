@@ -15,9 +15,9 @@
             <div class="user-card user-icon">
                 <img src="../assets/img/cart.svg" alt="card">
             </div>
-        </div>
-        <div class="tel">
-            <a class="tel-link" href="tel:+74951234567">+1 912-252-7350</a>
+            <a class="user-tel user-icon" href="tel:+74951234567">
+                <img src="../assets/img/phone.svg" alt="card"><span>+1 912-252-7350</span>
+            </a>
         </div>
     </div>
 </template>
@@ -65,18 +65,20 @@ export default {
                 max-width: 100%;
             }
         }
-        
+        .nav {
+            display: none;
+        }
         .user {
             display: flex;
             width: 15%;
             img {
                 max-width: 100%;
             }
+            &-tel {
+                display: none;
+            }
         }
         .search-input {
-            display: none;
-        }
-        .tel {
             display: none;
         }
 }
@@ -88,7 +90,7 @@ export default {
         .logo {
             width: 5vw;
         }
-
+        
         .user {
             display: flex;
             width: 15%;
@@ -100,8 +102,13 @@ export default {
                 &:last-child{
                     margin-right: 0;
                 }
-                img {
+                img{
                     max-width: 100%;
+                }
+            }
+            &-tel {
+                span {
+                    display: none;
                 }
             }
         }
@@ -116,21 +123,32 @@ export default {
 
 @media(min-width: $desktop){
     .header {
+        width: -webkit-fill-available;
         padding: 1% 4% 1% 4%;
         .logo {
             width: 3vw;
         }
 
         .user {
-            width: 7%;
+            width: 10%;
             &-icon {
+                max-width: 2vw;
                 box-sizing: border-box;
-                margin-right: 30%;
+                margin-right: auto;
                 &:last-child{
                     margin-right: 0;
                 }
                 img {
                     max-width: 100%;
+                }
+            }
+            &-tel {
+                display: block;
+            }
+            &-tel:hover {
+                span {
+                    display: block;
+                    position: absolute;
                 }
             }
         }
@@ -142,25 +160,6 @@ export default {
         .search-input {
             width: 15%;
             
-        }
-        .tel {
-            display: block;
-            order: 6;
-                &-link {
-                text-decoration: none;
-                position: relative;
-                color: black;
-                    &::before{
-                    content: "";
-                    width: 3vw;
-                    height: 3vw;
-                    display: block;
-                    position: absolute;
-                    left:0;
-                    top: 0;
-                    background: #000;
-                    }
-                }    
         }
     }
 }
