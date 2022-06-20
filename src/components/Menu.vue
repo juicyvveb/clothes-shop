@@ -104,23 +104,32 @@ export default {
     .nav {
         
         .wrapper {
+            width: auto;
+            min-width: 30%;
             display: flex;
             transform: none;
-            background: rgba(0,0,0,0.6);
-            width: 100%;
             height: auto;
-            display: flex;
             position: relative;
+            background: red;
             .menu {
-                width: 100%;
                 padding: 0;
-                &-contacts {
-                    display: none;
-                }
-                &-list {
-                    width: 100%;
+                background: yellow;
+                flex-direction: row;
+                &-contacts{ display: none};
+                &-list{
                     display: flex;
-                    justify-content: space-between;
+                    flex-direction: row;
+                    li {
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        padding: 0;
+                        transition: all 0.3s ease-in;
+                        word-break: normal;
+                        &:hover{
+                            background: red;
+                            font-size: 0.5rem;
+                        }   
+                    }
                 }
             }
         }

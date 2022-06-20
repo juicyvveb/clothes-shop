@@ -125,7 +125,8 @@ export default {
         }
 
         .user {
-            width: 10%;
+            width: auto;
+            min-width: 10%;
             &-icon {
                 max-width: 2vw;
                 box-sizing: border-box;
@@ -178,9 +179,9 @@ export default {
             }
         }
         .nav {
-            flex-grow: 2;
             display: flex;
-            max-width: 30%;
+            background: green;
+            flex-grow: 2;
         }
         .search-input {
             width: 15%;

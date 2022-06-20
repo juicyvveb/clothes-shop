@@ -3,6 +3,7 @@
   <div class="content">
       <Header/>
       <div class="superContainer">
+            <Slider/>
             <img alt="Vue logo" src="./assets/logo.png">
             <HelloWorld msg="Welcome to Your Vue.js App"/>
             <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -18,6 +19,7 @@
 import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
+import Slider from './components/Slider.vue';
 import emitter from 'tiny-emitter/instance';
 
 
@@ -30,6 +32,7 @@ export default {
     HelloWorld,
     Header,
     Menu,
+    Slider,
   }
 }
 </script>
@@ -55,7 +58,6 @@ body {
     transform: translate(0,0);  
     transition: all .3s ease-out;
   }
-    
 }
 
 .content.move .header, .content.move .superContainer{
