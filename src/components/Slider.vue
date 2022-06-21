@@ -15,13 +15,36 @@
                                 <img :src="require(`../assets/img/product_${i + 1}.jpg`)" class="slider-item--images---item">                
                                 <img :src="require(`../assets/img/product_${i + 1}.jpg`)" class="slider-item--images---item">                
                         </div>  
-                        <h1 class="item-text">
-                            Popular somer wear  {{i}}
-                        </h1>    
-                        <h1 class="item-text">
-                            Popular somer wear  {{i}}
-                        </h1>    
-                           
+                        <div class="item-info">
+                            <div class="description">
+                                <h3 class="description-text">
+                                    Cool clothing with brown strioes
+                                </h3>
+                                <p class="description-category">
+                                    in category
+                                </p>
+                            </div>
+                            <div class="rate">
+                                <h4 class="rate--starks">
+                                    <span>@</span>
+                                    <span>@</span>
+                                    <span>@</span>
+                                    <span>@</span>
+                                    <span>@</span>             
+                                </h4>
+                                <p class="rate--price">
+                                    $3.99
+                                </p>
+                            </div>
+                            <div class="buttons">
+                                <div class="buttons-like">
+                                    <button type="button"></button>
+                                </div>
+                                <div class="buttons-buy">
+                                    <button type="button"></button>
+                                </div>
+                            </div>
+                        </div>      
                     </li>
                 </TransitionGroup>
         </div>  
@@ -100,21 +123,102 @@ export default {
                 flex-direction: column;
                 box-sizing: border-box;
                 padding-top: 5%;
-                &-images{
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 5vw;
-                    padding: 5% 10%;
-                    box-sizing: border-box;
-                    flex-wrap :wrap;
-                    img{
-                        width: 100%;
-                        &:nth-child(2n+1){
-                            width: 30%;
-                            display: none;
+                    &-text{
+                      color: $white;  
+                    }
+                    &-images{
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 5vw;
+                        padding: 5% 10%;
+                        box-sizing: border-box;
+                        flex-wrap :wrap;
+                        img{
+                            width: 100%;
+                            &:nth-child(2n+1){
+                                width: 30%;
+                                display: none;
+                            }
                         }
                     }
-                }
+                    &-info{
+                        background-color: rgba(216, 213, 213, 0.5);
+                        color: white;
+                        border-top: 3px solid;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: stretch;
+
+                        .description {
+                            flex-basis: 60%;
+                            text-align: left;
+                             display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            padding: 5%;
+                            box-sizing: border-box;
+                        }
+                        .rate{
+                            padding: 5%;
+                            flex-basis: 40%;
+                            text-align: right;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            box-sizing: border-box;
+                        }
+                        .buttons {
+                            flex-basis: 100%;
+                            display: flex;
+                            &-like, &-buy {
+                                flex-grow: 2;
+                                box-sizing: border-box;
+                                transition: all .3s ease-out;
+                                border-top: 1px solid $white;
+                                padding: 0;
+                                box-sizing: border-box;
+                                max-height: 7vw;
+                                max-width: 50%;
+                                &:hover{
+                                    background:rgba(216, 213, 213, 0.5);
+                                    padding: 7%;
+                                    box-sizing: border-box;
+                                }
+                                button{
+                                    display: block;
+                                    max-width: 100%;
+                                    width: 100%;
+                                    height: 5vw;
+                                    border: none;
+                                    background: none;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    background: rgb(224, 164, 164);
+                                    &::before{
+                                        content: '';
+                                        width: 25%;
+                                        height: inherit;
+                                        background-image: url('../assets/img/heart_2.svg');
+                                        background-size: 60%;
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                    }
+                                }
+                                
+                            }
+                            &-buy{
+                                    border-left: 1px solid $white;
+                                    button{
+                                        &::before{
+                                        
+                                        background-image: url('../assets/img/cart.svg');
+                                        
+                                        }
+                                    }
+                            }
+                        }
+                    }
                 }
                 
             }
