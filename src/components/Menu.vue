@@ -35,7 +35,7 @@ export default {
         Search,
     },
     mounted(){
-        emitter.on('openMenu', this.openMenu);
+        emitter.on('openMenu',  this.openMenu);   
     },
     methods:{
         closeMenu(){
@@ -46,10 +46,10 @@ export default {
             return new Promise(res => {
                 this.isOpen = true;
                 document.querySelector('.content').classList.add('move');
-                res()
+                res(this.isOpen)
             })
             .then(() => {
-                touchFn(['.wrapper'], this.closeMenu)
+                touchFn('.wrapper', this.closeMenu)
             })
         }
     }

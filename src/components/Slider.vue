@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import touchFn from '../assets/js/touch';
+
 export default {
         data(){
             return {
@@ -46,33 +48,17 @@ export default {
             }
         },
         mounted(){
-            this.touch()
+            touchFn('.wrapper-slider', this.next, this.prev)
         },
         methods: {
             prev(){
-                console.log('prev')
                 this.from = 'right'
                 return this.active - 1 < 0 ? this.active = this.count - 1 : this.active--
             },
             next(){
-                console.log('next')
                 this.from = 'left'
                 return this.active + 1 > this.count - 1 ? this.active = 0 : this.active++
             },
-            touch(){
-                let touchStart, touchEnd;
-                let slider = document.querySelector('.wrapper-slider');
-                slider.addEventListener('touchstart', (e) => {
-                    e.stopPropagation();
-                    touchStart = e.changedTouches[0].pageX
-                })
-                slider.addEventListener('touchend', (e) => {
-                    e.stopPropagation();
-                    touchEnd = e.changedTouches[0].pageX;
-                   return touchStart > touchEnd ? this.next() : 
-                        touchStart < touchEnd ? this.prev() : false
-                })
-            }
         }
         
 }
