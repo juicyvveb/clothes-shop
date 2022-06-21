@@ -1,8 +1,9 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper wrapper-slider">
+        <h3>{{active}}</h3>
         <div class="slider">
-            <button class="slider-button slider-button--prev" @click="prev(), from = 'left'">prev</button>
-            <button class="slider-button slider-button--next" @click="next(), from = 'right'">next</button>
+            <button class="slider-button slider-button--prev" @click="prev(), from = 'left'"></button>
+            <button class="slider-button slider-button--next" @click="next(), from = 'right'"></button>
                 <TransitionGroup  class="slider-body" tag="ul" name="list" >
                     <li :class="['item', from == 'right' ? 'right' : 'left']" v-for="(slide, i) in count" :key="i" v-show="i == active">
                         <h1 class="item-text">
@@ -44,12 +45,34 @@ export default {
                 from: false,
             }
         },
+        mounted(){
+            this.touch()
+        },
         methods: {
             prev(){
+                console.log('prev')
+                this.from = 'right'
                 return this.active - 1 < 0 ? this.active = this.count - 1 : this.active--
             },
             next(){
+                console.log('next')
+                this.from = 'left'
                 return this.active + 1 > this.count - 1 ? this.active = 0 : this.active++
+            },
+            touch(){
+                console.log('touching');
+                var touchStart, touchEnd;
+                let slider = document.querySelector('.wrapper-slider');
+                slider.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                    touchStart = e.changedTouches[0].pageX
+                })
+                slider.addEventListener('touchend', (e) => {
+                    e.stopPropagation();
+                    touchEnd = e.changedTouches[0].pageX;
+                   return touchStart > touchEnd ? this.next() : 
+                        touchStart < touchEnd ? this.prev() : false
+                })
             }
         }
         
@@ -79,7 +102,7 @@ export default {
             width: 90%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-around;
             .slider-body{
                 max-width: 75%;
                 align-items: center;
@@ -112,12 +135,43 @@ export default {
             }
             &-button {
                 align-self: center;
+                background: none;
+                width: 4vw;
+                height: 4vw;
+                border: 2px solid $white;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                transition: all .3s ease-out;
+                align-items: center;
+                z-index: 10;
+                display: none;
+                &:hover{
+                    border-color: $gold;
+                     &:before{
+                        color: $gold;
+                    }
+                }
+                &:before{
+                    content: '<';
+                    width: 50%;
+                    padding: 25%;
+                    color: $white;
+                    font-weight: bold;
+                    font-size: 1.5em;
+                    line-height: 1rem;
+                    transition: all .3s ease-out;
+                }
             }
             &-button--next {
+                &:before{
+                    content: '>';
+                }
                 order: 3;
             }
         }
         &-nummers{
+            display: none;
             width: 40%;
             padding-top: 5%;
                 order: 5;
@@ -125,16 +179,28 @@ export default {
                     display: flex;
                     justify-content: space-between;
                     li{ 
-                        min-width: 5vw;
-                        min-height: 5vw;
-                        border: 2px solid rgb(216, 213, 213);
+                        min-width: 3vw;
+                        min-height: 3vw;
+                        border: 2px solid $white;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         transition: all .3s ease-out;
+                        cursor: pointer;
+                        box-sizing: border-box;
+                        span {
+                            width: 100%;
+                            height: 100%;
+                            color: $white;
+                            opacity: 0.5;
+                            transition: all .3s ease-out;
+                        }
                     }
                     li.active{
-                        border-color: goldenrod;
+                        border-color: $gold;
+                        span {
+                            opacity: 1;
+                        }
                     }
                 }
         }
@@ -146,7 +212,7 @@ export default {
         .slider{
             
             .slider-body{
-               
+                max-width: 85%;
                 .item {
                 
                 &-images{
@@ -165,20 +231,26 @@ export default {
             }
             &-button {
                 align-self: center;
+                display: flex;
             }
             &-button--next {
                 order: 3;
             }
             
         }
+        &-nummers{
+        display: block;
+        }
     }
+    
 }
 
 
 @media(min-width: $desktop){
 .wrapper {
         .slider{
-             width: 70%;
+             width: 80%;
+            justify-content: space-between;
             .slider-body{
                
                 .item {
@@ -193,8 +265,23 @@ export default {
                 }
             }
             }
+             &-button {
+                width: 2vw;
+                height: 2vw;
+            }
             
-            
+        }
+        &-nummers{
+            width: 15%;
+                &--list{
+                    li{ 
+                        min-width: 1.5vw;
+                        min-height: 1.5vw;
+                    }
+                    li.active{
+                        border-color: $gold;
+                    }
+                }
         }
     }
 }
