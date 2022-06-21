@@ -60,8 +60,7 @@ export default {
                 return this.active + 1 > this.count - 1 ? this.active = 0 : this.active++
             },
             touch(){
-                console.log('touching');
-                var touchStart, touchEnd;
+                let touchStart, touchEnd;
                 let slider = document.querySelector('.wrapper-slider');
                 slider.addEventListener('touchstart', (e) => {
                     e.stopPropagation();

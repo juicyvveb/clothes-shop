@@ -23,6 +23,8 @@
 <script>
 import emitter from 'tiny-emitter/instance';
 import Search from './Search.vue';
+import touchFn from '../assets/js/touch';
+
 export default {
     data(){
         return {
@@ -33,7 +35,7 @@ export default {
         Search,
     },
     mounted(){
-        emitter.on('openMenu', this.openMenu)
+        emitter.on('openMenu', this.openMenu);
     },
     methods:{
         closeMenu(){
@@ -41,8 +43,14 @@ export default {
             document.querySelector('.content').classList.remove('move')
         },
         openMenu(){
-            this.isOpen = true;
-            document.querySelector('.content').classList.add('move')
+            return new Promise(res => {
+                this.isOpen = true;
+                document.querySelector('.content').classList.add('move');
+                res()
+            })
+            .then(() => {
+                touchFn(['.wrapper'], this.closeMenu)
+            })
         }
     }
 
