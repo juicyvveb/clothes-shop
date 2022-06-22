@@ -11,9 +11,11 @@
                     <li>contact</li>
                 </ul>
                 <ul class="menu-contacts">
-                    <li>inst</li>
-                    <li>inst</li>
-                    <li>inst</li>
+                    <a class="fb" fb="#"></a>
+                   <a class="youtube" href="#"></a>
+                    <a class="gmail" href="#"></a>
+                    <a class="inst" href="#"></a> 
+                    <a class="tel" href="#"></a> 
                 </ul>
                <Search/>
     </div>
@@ -77,6 +79,7 @@ export default {
                 background: $background;
                 padding-top: 13%;
                 padding-left: 13%;
+                padding-right: 13%;
                 width: 80%;
                 display: flex;
                 flex-direction: column;
@@ -86,7 +89,44 @@ export default {
                     order: 3;
                 }
                 &-contacts {
+                    width: 100%;
                     margin-top: auto;
+                    margin-bottom: 10%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    a {
+                        min-width: 7vw;
+                        min-height: 7vw;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+                    .youtube {
+                        background-image: url('../assets/img/youtube.png');
+                    }
+                    .gmail {
+                        background-image: url('../assets/img/gmail.png');
+                    }
+                    .fb {
+                        background-image: url('../assets/img/fb.png');
+                    }
+                    .inst {
+                        background-image: url('../assets/img/inst.png');
+                    }
+                    .tel {
+                        background-image: url('../assets/img/phone.svg');
+                    }
+                }
+                &-list {
+                    padding: 10% 0;
+                    li {
+                        
+                        text-align: left;
+                        padding: 5% 0;
+                        font-size: 1.5em;
+                        cursor: pointer;
+                    }
                 }
             }
         } 
@@ -97,11 +137,20 @@ export default {
 @media(min-width: $laptop){
     .wrapper {
         .menu {
-            width: 35%;
+            width: 45%;
+            padding-top: 7%;
+                padding-left: 7%;
+        
+                &-contacts {
+                    a {
+                    min-width: 4vw;
+                    min-height: 4vw;
+                    }
+                } 
             }
         .search-input{
             display: none;
-            }
+        }
     } 
 }
 
@@ -110,32 +159,32 @@ export default {
         display: none;
     }
     .nav {
-        
         .wrapper {
             width: auto;
-            min-width: 30%;
+            width: 100%;
             display: flex;
             transform: none;
             height: auto;
             position: relative;
-            background: red;
             .menu {
-                padding: 0;
-                background: yellow;
+                flex-grow: 2;
                 flex-direction: row;
+                padding: 0 15%;
                 &-contacts{ display: none};
                 &-list{
                     display: flex;
                     flex-direction: row;
+                    flex-grow: 2;
+                    justify-content: space-between;
+                    height: 100%;
+                    padding: 0;
                     li {
                         box-sizing: border-box;
                         cursor: pointer;
                         padding: 0;
                         transition: all 0.3s ease-in;
-                        word-break: normal;
                         &:hover{
-                            background: red;
-                            font-size: 0.5rem;
+                            color: $white;
                         }   
                     }
                 }

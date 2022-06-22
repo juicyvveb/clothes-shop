@@ -105,7 +105,8 @@ export default {
         background-position: center;
         overflow: hidden;
         box-sizing: border-box;
-        padding-top: 5%;
+        padding-top: 7%;
+        padding-bottom: 5%;
         .slider{
             width: 90%;
             display: flex;
@@ -261,8 +262,8 @@ export default {
                     display: flex;
                     justify-content: space-between;
                     li{ 
-                        min-width: 3vw;
-                        min-height: 3vw;
+                        width: 3vw;
+                        height: 3vw;
                         border: 2px solid $white;
                         display: flex;
                         justify-content: center;
@@ -376,8 +377,8 @@ export default {
             width: 15%;
                 &--list{
                     li{ 
-                        min-width: 1.5vw;
-                        min-height: 1.5vw;
+                        width: 1.5vw;
+                        height: 1.5vw;
                     }
                     li.active{
                         border-color: $gold;

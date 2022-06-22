@@ -22,7 +22,7 @@ export default {
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
-    border: 2px solid black;
+    border: 1px solid black;
     input {
         width: 80%;
         max-height: 100%;
@@ -44,9 +44,14 @@ export default {
 
 @media (min-width: $laptop) {
     .search-input {
+        input {
+            outline: none;
+            padding-left: 10%;
+        }
         button {
             width: 2.5vw;
             min-height: 2.5vw;
+            cursor: pointer;
         }
     }
 }
