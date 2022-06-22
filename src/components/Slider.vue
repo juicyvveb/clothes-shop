@@ -148,6 +148,7 @@ export default {
                         display: flex;
                         flex-wrap: wrap;
                         align-items: stretch;
+                        justify-content: space-between;
 
                         .description {
                             flex-basis: 60%;
@@ -163,6 +164,7 @@ export default {
                             flex-basis: 40%;
                             text-align: right;
                             display: flex;
+                            flex-grow: 2;
                             flex-direction: column;
                             justify-content: space-between;
                             box-sizing: border-box;
@@ -170,31 +172,22 @@ export default {
                         .buttons {
                             flex-basis: 100%;
                             display: flex;
+                            height: 5vh;
                             &-like, &-buy {
                                 flex-grow: 2;
-                                box-sizing: border-box;
                                 transition: all .3s ease-out;
                                 border-top: 1px solid $white;
-                                padding: 0;
-                                box-sizing: border-box;
-                                max-height: 7vw;
                                 max-width: 50%;
-                                &:hover{
-                                    background:rgba(216, 213, 213, 0.5);
-                                    padding: 7%;
-                                    box-sizing: border-box;
-                                }
+                                box-sizing: border-box;
+                                
                                 button{
-                                    display: block;
-                                    max-width: 100%;
                                     width: 100%;
-                                    height: 5vw;
+                                    height: 100%;
                                     border: none;
                                     background: none;
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-                                    background: rgb(224, 164, 164);
                                     &::before{
                                         content: '';
                                         width: 25%;
@@ -316,6 +309,21 @@ export default {
                         }
                     }
                 }
+                &-info {
+                        width: 40%;
+                        align-self: center;
+                        .buttons {
+                           &-like, &-buy {
+                               &:hover{
+                                    background:rgba(216, 213, 213, 0.5);
+                                    padding: 2% 7%;
+                                }
+                           } 
+                        }
+                        .description {
+                            max-width: 50%;
+                        }
+                    }
             }
             }
             &-button {
@@ -344,15 +352,19 @@ export default {
                
                 .item {
                     padding: 0 7%;
-                &-images{
-                    img{
+                    
+                    &-images{
+                        img{
                         width: 30%;
                         &:nth-child(2n+1){
                             width: 25%;
+                            }
                         }
                     }
+                    &-info {
+                        width: 30%;
+                    }
                 }
-            }
             }
              &-button {
                 width: 2vw;
