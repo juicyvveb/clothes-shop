@@ -112,6 +112,7 @@ export default {
             display: flex;
             width: 25%;
             margin-right: 5%;
+            
         }
     }
 }
@@ -180,12 +181,11 @@ export default {
         }
         .nav {
             display: flex;
-            background: green;
             flex-grow: 2;
         }
         .search-input {
             width: 15%;
-            
+            border: 1px solid black;
         }
     }
 }
