@@ -1,8 +1,7 @@
 <template>
     <div class="item">
         <div class="item-images">
-            <img src="../assets/img/product_3.jpg" class="slider-item--images---item">                
-            <!-- <img :src="require(`../assets/img/product_${i + 1}.jpg`)" class="slider-item--images---item">                 -->
+            <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
         </div>
          <div class="item-info">
                             <div class="description">
@@ -10,7 +9,7 @@
                                     Cool clothing with brown strioes
                                 </h3>
                                 <p class="description-category">
-                                    in category
+                                    type: {{info.type}}
                                 </p>
                             </div>
                             <div class="rate">
@@ -40,7 +39,12 @@
 
 <script>
 export default {
-    
+    props: ['info'],
+    data(){
+        return {
+
+        }
+    }
 }
 </script>
 
@@ -55,7 +59,6 @@ export default {
                     &-images{
                         display: flex;
                         justify-content: center;
-                        margin-top: 5vw;
                         box-sizing: border-box;
                         flex-wrap :wrap;
                         img{
@@ -137,5 +140,11 @@ export default {
                         }
                     }
                 }
-
+    .catalog {
+        .item{
+            &-info{
+                border: 1px solid $white;
+            }
+        }
+    }
 </style>
