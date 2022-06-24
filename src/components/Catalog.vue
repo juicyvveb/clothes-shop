@@ -7,19 +7,23 @@
             <input type="radio" class="catalog-filter--checkbox kids" value="kids" id="kids" v-model="category">
             <input type="radio" class="catalog-filter--checkbox home" value="home" id="home" v-model="category">  
             <div class="catalog-filter--labels">
-                <label :class="{active : isActive('women')}" for="women" @click="hidden()">women{{show}}</label>
+                <label :class="{active : isActive('women')}" for="women" @click="hidden()">women</label>
                 <label :class="{active : isActive('men')}" for="men" @click="hidden()">men</label>
                 <label :class="{active : isActive('kids')}" for="kids" @click="hidden()">kids</label>
                 <label :class="{active : isActive('home')}" for="home" @click="hidden()">home</label>
             </div>
         </div>
+        <div class="countShow">
+            <input type="text" v-model="showCount">
+        </div>
         <div :class="{'catalog-items': true}">
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
-                    <li v-for="(item, i) in filter" :key="i">
+                    <li v-for="(item, i) in filter" :key="i" v-show="i + 1 <= showCount">
                         <Item :info="item"/>
                     </li>
                     </TransitionGroup>
         </div>
+        <button type="button" class="lazyLoad" @click="showCount += showCount">Load More</button>
     </section>
 </template>
 
@@ -29,8 +33,8 @@ export default {
     data(){
         return {
             category: "women",
-            value: 'odd',
             items: [],
+            showCount: 2,
         }
     },
      beforeMount(){
@@ -116,7 +120,7 @@ export default {
                     width: 100%;
                     padding: 0% 4%;    
                     box-sizing: border-box;
-
+                    
                     .item {
                         width: 100%;
                     }
