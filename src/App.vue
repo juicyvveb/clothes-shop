@@ -5,6 +5,7 @@
       <div class="superContainer">
             <Slider/>
              <Catalog/>
+             <Features/>
             <img alt="Vue logo" src="./assets/logo.png">
             <HelloWorld msg="Welcome to Your Vue.js App"/>
             <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -22,6 +23,7 @@ import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import Slider from './components/Slider.vue';
+import Features from './components/Features.vue';
 import Catalog from './components/Catalog.vue';
 import emitter from 'tiny-emitter/instance';
 
@@ -41,6 +43,7 @@ export default {
     Menu,
     Slider,
     Catalog,
+    Features,
   }
 }
 </script>

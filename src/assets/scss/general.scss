@@ -1,7 +1,8 @@
-ul, h1, h2, h3, p, h4, input, button {
+ul, h1, h2, h3, p, h4, input, button, select {
     list-style: none;
     margin: 0;
     padding: 0;
+    outline: none;
 }
 
 
@@ -11,5 +12,5 @@ $background: rgb(239, 219, 219);
 $white: rgb(216, 213, 213);
 $gold: rgb(207, 161, 45);
 $green: rgb(13, 189, 121);
-
+$black: #4a4a4a;
 
