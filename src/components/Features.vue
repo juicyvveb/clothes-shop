@@ -102,13 +102,17 @@
     padding-right: 19%;
     &-list{
         display: flex;
+        justify-content: space-between;
         &--item {
             cursor: pointer;
+            flex-grow: 2;
+            max-width: 33.333%;
+            overflow: hidden;
             .img{
                     div {
-                       
-                    }
-                   
+                        transition: all .2s ease-out;
+                        transform: translateY(30%);
+                    }    
             }
             .text{
                 span{
@@ -124,21 +128,27 @@
         &--item:hover{
             background: $green;
             transform: scale(1.1);
+            transition: all .3s ease-in-out;
+            .img{
+                    div {
+                       transform: translateY(0);
+                    }    
+                    .payment{
+                        background-image: url('../assets/img/icon_1b.svg');
+                    }
+                    .premium{
+                        background-image: url('../assets/img/icon_2.svg');
+                    }
+                    .delivery{
+                        background-image: url('../assets/img/icon_3b.svg');
+                    }
+            }
             .text {
                 span{
                     color: white;
                 }
             }
         }
-        // .item-payment .img .payment{
-        //     background-image: url('../assets/img/icon_1b.svg');
-        // }
-        // .item-payment .img .premium{
-        //     background-image: url('../assets/img/icon_2.svg');
-        // }
-        // .item-payment .img .delivery{
-        //     background-image: url('../assets/img/icon_3b.svg');
-        // }
         }
     }
 }
