@@ -5,24 +5,20 @@
       <div class="superContainer">
             <Slider/>
              <Catalog/>
-            <img alt="Vue logo" src="./assets/logo.png">
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
-           
+             <Features/>   
+             <Footer/>         
       </div>   
   </div>
   
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import Slider from './components/Slider.vue';
+import Features from './components/Features.vue';
 import Catalog from './components/Catalog.vue';
+import Footer from './components/Footer.vue';
 import emitter from 'tiny-emitter/instance';
 
 
@@ -36,11 +32,12 @@ export default {
     })
   },
   components: {
-    HelloWorld,
     Header,
     Menu,
     Slider,
     Catalog,
+    Features,
+    Footer,
   }
 }
 </script>
