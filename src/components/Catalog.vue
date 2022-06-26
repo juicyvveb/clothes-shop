@@ -48,7 +48,7 @@ export default {
         return {
             category: "women",
             items: [],
-            showCount: 1,
+            showCount: 3,
             choseCount: false,
         }
     },

@@ -5,6 +5,7 @@
       <div class="superContainer">
             <Slider/>
              <Catalog/>
+             <Popular/>
              <Features/>   
              <Footer/>         
       </div>   
@@ -18,6 +19,7 @@ import Menu from './components/Menu.vue';
 import Slider from './components/Slider.vue';
 import Features from './components/Features.vue';
 import Catalog from './components/Catalog.vue';
+import Popular from './components/Popular.vue';
 import Footer from './components/Footer.vue';
 import emitter from 'tiny-emitter/instance';
 
@@ -38,6 +40,7 @@ export default {
     Catalog,
     Features,
     Footer,
+    Popular,
   }
 }
 </script>
