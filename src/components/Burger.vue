@@ -35,8 +35,7 @@ export default {
     justify-content: space-between;
     margin-right: auto;
     margin-left: 5%;
-    align-self: flex-start;
-    transform: translateY(25%);
+    align-self: center;
     &-item,
     &::before,
     &::after {

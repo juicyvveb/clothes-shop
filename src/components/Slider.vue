@@ -1,13 +1,12 @@
 <template>
     <div class="wrapper wrapper-slider">
-        <h3>{{active}}</h3>
         <div class="slider">
             <button class="slider-button slider-button--prev" @click="prev(), from = 'left'"></button>
             <button class="slider-button slider-button--next" @click="next(), from = 'right'"></button>
                 <TransitionGroup  class="slider-body" tag="ul" name="list" >
                     <li :class="['item', from == 'right' ? 'right' : 'left']" v-for="(slide, i) in count" :key="i" v-show="i == active">
                         <h1 class="item-text">
-                            Popular somer wear  {{i}}
+                            Popular somer wear  {{i+1}}
                         </h1>
                         <div class="item-images">
                             <!-- <img class="icon" :src="require(`../img/${page}.svg`)"> -->
@@ -105,7 +104,7 @@ export default {
         background-position: center;
         overflow: hidden;
         box-sizing: border-box;
-        padding-top: 7%;
+        padding-top: 12vw;
         padding-bottom: 5%;
         .slider{
             width: 90%;
@@ -272,10 +271,9 @@ export default {
                         cursor: pointer;
                         box-sizing: border-box;
                         span {
-                            width: 100%;
-                            height: 100%;
                             color: $white;
                             opacity: 0.5;
+                            
                             transition: all .3s ease-out;
                         }
                     }
@@ -292,6 +290,7 @@ export default {
 
 @media(min-width: $laptop){
 .wrapper {
+    padding-top: 10vw;
         .slider{
             
             .slider-body{
@@ -346,6 +345,7 @@ export default {
 
 @media(min-width: $desktop){
 .wrapper {
+    padding-top: 4vw;
         .slider{
              width: 80%;
             justify-content: space-between;
@@ -364,6 +364,7 @@ export default {
                     }
                     &-info {
                         width: 30%;
+                        display: none;
                     }
                 }
             }

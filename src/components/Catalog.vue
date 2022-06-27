@@ -135,9 +135,12 @@ export default {
                     width: 100%;
                     padding: 0% 4%;    
                     box-sizing: border-box;
-                    
+
                     .item {
                         width: 100%;
+                        border: 1px solid $gray;
+                        padding-top: 0;
+                        margin-top: 4%;
                     }
                 }
             }
@@ -232,6 +235,7 @@ export default {
 
     @media(min-width: $laptop){
     .catalog{
+        padding-bottom: 5%;
             &-filter{
                 display: flex;
                 justify-content: center;
@@ -263,7 +267,8 @@ export default {
             }
 
             .countShow{
-                
+                padding-right: 6%;
+                padding-left: 6%;
                 .wrapper {
                 
                     .countCheck-input {
@@ -321,8 +326,8 @@ export default {
         }
 
         .countShow{
-            padding-right: 6%;
-            padding-left: 6%;
+            padding-right: 7%;
+            padding-left: 7%;
             .wrapper {
                 .countCheck-input {
                 }
