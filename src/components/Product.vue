@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <h3>{{$route.params.id}}</h3>
-        <p>{{productInfo}}</p>
+        <div class="product">
+            <Item :info="productInfo"/>
+        </div>
     </div>
 </template>
 
 <script>
+import Item from './Item.vue';
 import getList from '../assets/js/getList';
 export default {
     data(){
@@ -13,17 +15,20 @@ export default {
             productInfo: '',
         }
     },
+    components:{
+        Item,
+        // Item: () => this.productInfo ? import('./Item.vue') : false,
+    },
     beforeMount(){
        this.getInfo(this.$route.params.id)
     },
-   async beforeRouteUpdate(to) {
-    this.getInfo(to)
+    beforeRouteUpdate(to) {
+        this.getInfo(to)
   },
   methods: {
     getInfo(route){
-        return getList.then((answer) => {
-        console.log(getList)
-        this.productInfo = answer.filter(el => el.id == route)
+        return getList.then(async (answer) => {
+        this.productInfo = await answer.filter(el => el.id == route)[0]
         })
     }
   }
@@ -33,5 +38,11 @@ export default {
 <style lang="scss" scoped>
     .container {
         padding-top: 15vw;
+        .product{
+            padding: 4%;
+           .item {
+            width: 100%;
+           } 
+        }
     }
 </style>

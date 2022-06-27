@@ -3,7 +3,7 @@ let promise = new Promise((res) => {
         let arr = [
             {type: 'men', img: 'product_3', id: 'warm'},
             {type: 'men', img: 'product_4', id: 'bluse'},
-            {type: 'women', img: 'product_5', id: 'nugger'},
+            {type: 'women', img: 'product_3', id: 'nugger'},
             {type: 'women', img: 'product_1', id: 'pulover'},
             {type: 'women', img: 'product_3', id: 'je'},
             {type: 'kids', img: 'product_2', id: 'ddfdf'},
@@ -15,5 +15,4 @@ let promise = new Promise((res) => {
         res(arr)
     }, 1000)
   })
-//   .then((arr) => this.items = arr)
 export default (promise)
