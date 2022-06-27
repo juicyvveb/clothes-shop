@@ -1,8 +1,8 @@
 <template>
     <div class="header">
-        <div class="logo">
+        <router-link to="/" class="logo">
             <img class="logo-img" src="../assets/logo.png">
-        </div>
+        </router-link>
         <Burger/>
         <nav class="nav">
             <Menu/>

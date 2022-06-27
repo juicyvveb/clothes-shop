@@ -30,7 +30,9 @@
         <div :class="{'catalog-items': true}">
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
                     <li v-for="(item, i) in filter" :key="i" v-show="i + 1 <= showCount">
-                        <Item :info="item"/>
+                        <router-link :to="`/product/${item.id}`">
+                            <Item :info="item"/>
+                        </router-link>
                     </li>
                     </TransitionGroup>
         </div>
@@ -43,6 +45,7 @@
 
 <script>
 import Item from './Item.vue';
+import getList from '../assets/js/getList';
 export default {
     data(){
         return {
@@ -53,23 +56,24 @@ export default {
         }
     },
      beforeMount(){
-        new Promise((res) => {
-        setTimeout(() => {
-            let arr = [{type: 'men', img: 'product_3'},
-                {type: 'men', img: 'product_4'},
-                {type: 'women', img: 'product_5'},
-                {type: 'women', img: 'product_1'},
-                {type: 'women', img: 'product_3'},
-                {type: 'kids', img: 'product_2'},
-                {type: 'kids', img: 'product_2'},
-                {type: 'home', img: 'product_1'},
-                {type: 'home', img: 'product_3'},
-                {type: 'home', img: 'product_2'},
-                {type: 'men', img: 'product_2'},]
-            res(arr)
-        }, 1000)
-      })
-      .then((arr) => this.items = arr)
+        return getList.then(res => this.items = res)
+    //     new Promise((res) => {
+    //     setTimeout(() => {
+    //         let arr = [{type: 'men', img: 'product_3'},
+    //             {type: 'men', img: 'product_4'},
+    //             {type: 'women', img: 'product_5'},
+    //             {type: 'women', img: 'product_1'},
+    //             {type: 'women', img: 'product_3'},
+    //             {type: 'kids', img: 'product_2'},
+    //             {type: 'kids', img: 'product_2'},
+    //             {type: 'home', img: 'product_1'},
+    //             {type: 'home', img: 'product_3'},
+    //             {type: 'home', img: 'product_2'},
+    //             {type: 'men', img: 'product_2'},]
+    //         res(arr)
+    //     }, 1000)
+    //   })
+    //   .then((arr) => this.items = arr)
     },
     components: {
         Item,
