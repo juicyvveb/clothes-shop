@@ -30,7 +30,9 @@
         <div :class="{'catalog-items': true}">
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
                     <li v-for="(item, i) in filter" :key="i" v-show="i + 1 <= showCount">
-                        <Item :info="item"/>
+                        <router-link :to="`/product/${item.id}`">
+                            <Item :info="item"/>
+                        </router-link>
                     </li>
                     </TransitionGroup>
         </div>
@@ -43,33 +45,18 @@
 
 <script>
 import Item from './Item.vue';
+import getList from '../assets/js/getList';
 export default {
     data(){
         return {
             category: "women",
             items: [],
-            showCount: 1,
+            showCount: 3,
             choseCount: false,
         }
     },
      beforeMount(){
-        new Promise((res) => {
-        setTimeout(() => {
-            let arr = [{type: 'men', img: 'product_3'},
-                {type: 'men', img: 'product_4'},
-                {type: 'women', img: 'product_5'},
-                {type: 'women', img: 'product_1'},
-                {type: 'women', img: 'product_3'},
-                {type: 'kids', img: 'product_2'},
-                {type: 'kids', img: 'product_2'},
-                {type: 'home', img: 'product_1'},
-                {type: 'home', img: 'product_3'},
-                {type: 'home', img: 'product_2'},
-                {type: 'men', img: 'product_2'},]
-            res(arr)
-        }, 1000)
-      })
-      .then((arr) => this.items = arr)
+        return getList.then(res => this.items = res)
     },
     components: {
         Item,
@@ -135,9 +122,12 @@ export default {
                     width: 100%;
                     padding: 0% 4%;    
                     box-sizing: border-box;
-                    
+
                     .item {
                         width: 100%;
+                        border: 1px solid $gray;
+                        padding-top: 0;
+                        margin-top: 4%;
                     }
                 }
             }
@@ -232,6 +222,7 @@ export default {
 
     @media(min-width: $laptop){
     .catalog{
+        padding-bottom: 5%;
             &-filter{
                 display: flex;
                 justify-content: center;
@@ -263,7 +254,8 @@ export default {
             }
 
             .countShow{
-                
+                padding-right: 6%;
+                padding-left: 6%;
                 .wrapper {
                 
                     .countCheck-input {
@@ -321,8 +313,8 @@ export default {
         }
 
         .countShow{
-            padding-right: 6%;
-            padding-left: 6%;
+            padding-right: 7%;
+            padding-left: 7%;
             .wrapper {
                 .countCheck-input {
                 }

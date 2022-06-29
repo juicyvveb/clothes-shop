@@ -1,8 +1,8 @@
 <template>
     <div class="header">
-        <div class="logo">
+        <router-link to="/" class="logo">
             <img class="logo-img" src="../assets/logo.png">
-        </div>
+        </router-link>
         <Burger/>
         <nav class="nav">
             <Menu/>
@@ -51,10 +51,11 @@ export default {
         z-index: 3;
         display: flex;
         background: $background;
+        height: 12vw;
         padding: 3% 7% 3% 7%;
         justify-content: space-between;
         position: relative;
-        align-items: baseline;
+        align-items: center;
         position: fixed;
         top: 0; 
         left: 0;
@@ -87,6 +88,7 @@ export default {
 .header {
         padding: 2% 5% 2% 5%;
         align-items: center;
+        height: 10vw;
         .logo {
             width: 5vw;
         }
@@ -121,6 +123,7 @@ export default {
     .header {
         width: -webkit-fill-available;
         padding: 1% 4% 1% 4%;
+        height: 4vw;
         .logo {
             width: 3vw;
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="item">
+    <div class="item" >
         <div class="item-images">
             <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
         </div>
@@ -42,9 +42,9 @@ export default {
     props: ['info'],
     data(){
         return {
-
+            product: '',
         }
-    }
+    },
 }
 </script>
 
@@ -147,4 +147,12 @@ export default {
             }
         }
     }
+
+
+    //product page
+    .product{
+           .item {
+            width: 100%;
+           } 
+        }
 </style>

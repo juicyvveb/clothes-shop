@@ -1,23 +1,17 @@
 <template>
-  <Menu/>
-  <div class="content">
-      <Header/>
-      <div class="superContainer">
-            <Slider/>
-             <Catalog/>
-             <Features/>   
-             <Footer/>         
-      </div>   
-  </div>
-  
+<Menu/>
+<div class="content">
+  <Header/>
+  <div class="superContainer">
+      <router-view></router-view>
+    <Footer/>         
+  </div>   
+</div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
-import Slider from './components/Slider.vue';
-import Features from './components/Features.vue';
-import Catalog from './components/Catalog.vue';
 import Footer from './components/Footer.vue';
 import emitter from 'tiny-emitter/instance';
 
@@ -34,9 +28,6 @@ export default {
   components: {
     Header,
     Menu,
-    Slider,
-    Catalog,
-    Features,
     Footer,
   }
 }
