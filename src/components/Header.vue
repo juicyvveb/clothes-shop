@@ -9,9 +9,9 @@
         </nav>
         <Search/>
         <div class="user">
-            <div class="user-checkout user-icon">
+            <router-link to="login" class="user-checkout user-icon">
                 <img src="../assets/img/user.svg" alt="user">
-            </div>
+            </router-link>
             <div class="user-card user-icon">
                 <img src="../assets/img/cart.svg" alt="card">
             </div>
