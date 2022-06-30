@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/general.scss';
     .container {
         padding-top: 15vw;
         .product{
@@ -43,6 +44,15 @@ export default {
            .item {
             width: 100%;
            } 
+        }
+    }
+
+    @media(min-width: $desktop){
+        .container {
+            padding-top: 2vw;
+            .product{
+                padding: 4% 19%;
+            }
         }
     }
 </style>

@@ -1,8 +1,8 @@
 <template>
             <Slider/>
-             <Catalog/>
-             <Popular/>
-             <Features/>   
+            <Catalog/>
+            <Popular/>
+            <Features/>   
 </template>
 
 <script>

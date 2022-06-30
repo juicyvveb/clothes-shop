@@ -55,7 +55,7 @@ export default {
             choseCount: false,
         }
     },
-     beforeMount(){
+    beforeMount(){
         return getList.then(res => this.items = res)
     },
     components: {
