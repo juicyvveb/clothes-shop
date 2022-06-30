@@ -1,6 +1,7 @@
 <template>
 <Menu/>
 <div class="content">
+  <h3>{{$store}}</h3>
   <Header/>
   <div class="superContainer">
       <router-view></router-view>

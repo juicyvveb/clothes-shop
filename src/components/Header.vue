@@ -9,7 +9,7 @@
         </nav>
         <Search/>
         <div class="user">
-            <router-link to="login" class="user-checkout user-icon">
+            <router-link to="/login" class="user-checkout user-icon">
                 <img src="../assets/img/user.svg" alt="user">
             </router-link>
             <div class="user-card user-icon">

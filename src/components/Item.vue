@@ -38,7 +38,7 @@
                             </div>
                             <div class="buttons">
                                 <div class="buttons-like">
-                                    <button type="button"></button>
+                                    <button type="button" @click.prevent="toLocalStorage(info)"></button>
                                 </div>
                                 <div class="buttons-buy">
                                     <button type="button"></button>
@@ -60,6 +60,19 @@ export default {
             sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl']
         }
     },
+    methods: {
+        toLocalStorage(product){
+           if(localStorage.getItem('liked')){
+               let arr = JSON.parse(localStorage.getItem('liked'));
+               arr.push(product);
+               localStorage.setItem('liked', JSON.stringify(arr))
+           }
+           else {
+                let arr = [product];
+                localStorage.setItem('liked', JSON.stringify(arr))
+           }
+        }
+    }
 }
 </script>
 
