@@ -2,6 +2,7 @@
     <div class="item" >
         <div class="item-images">
             <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
+            <!-- <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                 -->
         </div>
          <div class="item-info">
                             <div class="description">
@@ -52,10 +53,9 @@
 
 <script>
 export default {
-    props: ['info'],
+    props: ['id'],
     data(){
         return {
-            product: '',
             sizeValue: [],
             sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl']
         }
@@ -71,6 +71,11 @@ export default {
                 let arr = [product];
                 localStorage.setItem('liked', JSON.stringify(arr))
            }
+        }
+    },
+    computed: {
+        info(){
+            return this.$store.state.catalog.filter(el => el.id == this.id)[0]
         }
     }
 }

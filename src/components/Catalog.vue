@@ -27,11 +27,12 @@
             </div>
             
         </div>
+        <p>{{filter}}</p>
         <div :class="{'catalog-items': true}">
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
                     <li v-for="(item, i) in filter" :key="i" v-show="i + 1 <= showCount">
                         <router-link :to="`/product/${item.id}`">
-                            <Item :info="item"/>
+                            <Item :id="item.id"/>
                         </router-link>
                     </li>
                     </TransitionGroup>
@@ -49,7 +50,6 @@ export default {
     data(){
         return {
             category: "women",
-            // items: [],
             showCount: 3,
             choseCount: false,
         }
