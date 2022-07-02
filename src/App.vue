@@ -24,6 +24,7 @@ export default {
   mounted(){
     emitter.on('openMenu', () => {
     })
+    this.$store.dispatch('loadCatalog')
   },
   components: {
     Header,

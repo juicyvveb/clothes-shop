@@ -3,10 +3,12 @@ import * as VueRouter from 'vue-router';
 
 import Home from './components/Home.vue';
 import Product from './components/Product.vue';
+import Login from './components/Login.vue';
 
 const routes = [
     { path: '/', component: Home },
     { path: '/product/:id', component: Product },
+    { path: '/login', component: Login },
 ]
 
 const router = VueRouter.createRouter({
