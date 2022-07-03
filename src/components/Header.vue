@@ -12,9 +12,9 @@
             <router-link to="/login" class="user-checkout user-icon">
                 <img src="../assets/img/user.svg" alt="user">
             </router-link>
-            <div class="user-card user-icon">
+            <router-link to="/card" class="user-card user-icon">
                 <img src="../assets/img/cart.svg" alt="card">
-            </div>
+            </router-link>
             <a class="user-tel user-icon" href="tel:+74951234567">
                 <img src="../assets/img/phone.svg" alt="card"><span>+1 912-252-7350</span>
             </a>

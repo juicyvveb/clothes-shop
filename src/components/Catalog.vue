@@ -32,7 +32,7 @@
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
                     <li v-for="(item, i) in filter" :key="i" v-show="i + 1 <= showCount">
                         <router-link :to="`/product/${item.id}`">
-                            <Item :id="item.id"/>
+                            <Item :info="item"/>
                         </router-link>
                     </li>
                     </TransitionGroup>
