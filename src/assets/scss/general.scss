@@ -1,4 +1,4 @@
-ul, h1, h2, h3, p, h4, input, button, select, a {
+ul, h1, h2, h3, p, h4, h5, input, button, select, a {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -9,6 +9,23 @@ ul, h1, h2, h3, p, h4, input, button, select, a {
     box-sizing: border-box;
 }
 
+
+@mixin button {
+            background: none;
+            border: 2px solid $green;
+            color: white;
+            background: $green;
+            font-weight: bold;
+            padding: 3%;
+            box-sizing: border-box;
+            border-radius: 4px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+
+            @media (min-width: $laptop){
+                padding: 1%;
+            }
+}
 
 $laptop: '768px';
 $desktop: '1024px';
