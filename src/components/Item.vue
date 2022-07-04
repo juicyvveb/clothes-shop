@@ -4,7 +4,7 @@
             <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
             <!-- <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                 -->
         </div>
-         <div class="item-info">
+        <div class="item-info">
                             <div class="description">
                                 <h3 class="description-text">
                                     Cool clothing with brown strioes
@@ -53,7 +53,7 @@
 
 <script>
 export default {
-    props: ['id'],
+    props: ['info'],
     data(){
         return {
             sizeValue: [],
@@ -73,11 +73,6 @@ export default {
            }
         }
     },
-    computed: {
-        info(){
-            return this.$store.state.catalog.filter(el => el.id == this.id)[0]
-        }
-    }
 }
 </script>
 

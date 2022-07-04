@@ -1,37 +1,27 @@
 <template>
     <div class="container">
         <div class="product">
-            <Item :info="productInfo"/>
+            <Item :info="getInfo"/>
         </div>
     </div>
 </template>
 
 <script>
 import Item from './Item.vue';
-import getList from '../assets/js/getList';
 export default {
     data(){
         return {
-            productInfo: '',
         }
     },
     components:{
         Item,
-        // Item: () => this.productInfo ? import('./Item.vue') : false,
     },
-    beforeMount(){
-       this.getInfo(this.$route.params.id)
-    },
-    beforeRouteUpdate(to) {
-        this.getInfo(to)
-  },
-  methods: {
-    getInfo(route){
-        return getList.then(async (answer) => {
-        this.productInfo = await answer.filter(el => el.id == route)[0]
-        })
+    computed: {
+        getInfo(){
+            return this.$store.state.catalog
+            .filter(el => el.id ==this.$route.params.id)[0]
+        }
     }
-  }
 }
 </script>
 

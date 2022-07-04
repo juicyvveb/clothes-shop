@@ -1,19 +1,16 @@
 <template>
     <div class="container">
-        <div class="login" v-if="!loged">
+        <div class="login">
                 <div class="content">
-                    <h3 class="content-title">Войти в кабинет</h3>
+                    <h3 class="content-title">Создать кабинет</h3>
                     <form action="#" class="content-form form">
-                        <input type="email" placeholder="email" class="form-password" v-model="email">
-                        <input type="text" placeholder="password" class="form-password" v-model="password">
-                        <button type="submit" @click.prevent="login()" class="form-button">войти</button>
-                        <router-link to="/registration">
-                            регистрация
-                        </router-link>
+                        <input type="text" placeholder="name" class="form-name" v-model="name">
+                        <input type="email" placeholder="email" class="form-email" v-model="email">
+                        <input type="password" placeholder="password" class="form-password" v-model="password">
+                        <button type="submit" @click.prevent="registration()" class="form-button">регистрация</button>
                     </form>
                 </div>
         </div>
-        <button type="submit" @click.prevent="logout()" class="form-button" v-if="loged">выйти</button>
     </div>
 </template>
 
@@ -23,27 +20,22 @@ export default {
         return {
             email: '',
             password: '',
+            name: '',
         }
     },
     methods: {
-        async login(){
-            const data = {
+        async registration(){
+            const obj = {
+                name: this.name,
                 email: this.email,
-                password: this.password
+                password: this.password,
             }
-            await this.$store.dispatch('login', data)
-            .then(() => this.$router.push('/'))
-            
-        },
-        async logout(){
-            await this.$store.dispatch('logout')
+            await this.$store.dispatch('register', obj)
+            .then(() => {
+                this.$router.push('/')
+            })
         }
     },
-    computed: {
-        loged(){
-            return this.$store.state.user
-        }
-    }
 }
 </script>
 

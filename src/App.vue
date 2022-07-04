@@ -4,6 +4,7 @@
   <Header/>
   <div class="superContainer">
       <router-view></router-view>
+      <p>{{user}}</p>
     <Footer/>         
   </div>   
 </div>
@@ -13,18 +14,21 @@
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import Footer from './components/Footer.vue';
-import emitter from 'tiny-emitter/instance';
-
 
 export default {
   data(){
     return {
     }
   },
-  mounted(){
-    emitter.on('openMenu', () => {
-    })
+  async mounted(){
     this.$store.dispatch('loadCatalog')
+    await this.$store.dispatch('change');
+    await this.$store.dispatch('buildCard');
+  },
+  computed: {
+    user(){
+      return this.$store.state.user
+    }
   },
   components: {
     Header,
