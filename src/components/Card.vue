@@ -7,12 +7,9 @@
                 <div class="cart">
                     <div class="cart-list">
                         <ul>
-                            <li>ITEM</li>
-                            <li>ITEM</li>
-                            <li>ITEM</li>
-                            <li>ITEM</li>
-                            <li>ITEM</li>
-                            <li>ITEM</li>
+                            <li v-for="(item, i) in 3" :key="i">
+                                <span>{{i}}</span><cartItem/>
+                            </li>
                         </ul>
                     </div>
                     <div class="cart-buttons">
@@ -32,12 +29,17 @@
 </template>
 
 <script>
+import cartItem from './cartItem.vue';
 export default {
     computed: {
         card(){
             return this.$store.state.card
         }
     },
+    components: {
+        cartItem,
+    },
+    
 }
 </script>
 
@@ -62,9 +64,17 @@ export default {
             width: 100%;
             &-list {
                padding: 10% 0;
+               ul {
+                   li {
+                       margin-top: 5%;
+                       text-align: left;
+                       &:first-child{
+                           margin-top: 0;
+                       }
+                   }
+               }
             }
             &-buttons {
-                border-top: 1px solid $gray;
                 padding: 10% 0;
                 display: flex;
                 .button {
@@ -104,5 +114,85 @@ export default {
             }
         }
     }
+}
+
+@media (min-width: $laptop){
+    .container {
+        .title{
+            padding-top: 15vw;
+            padding-bottom: 5vw;
+           
+        }
+    .wrapper {
+        padding: 6%;
+        .cart{
+            &-list {
+               padding: 4% 0;
+            }
+            &-buttons {
+                padding: 4% 0;
+                justify-content: flex-end;
+                .button {
+                    @include button; 
+                }
+                &--clear.button{
+                    background: $gray;
+                    border: $gray;
+                }
+            }
+            &-total {
+                padding: 10%;
+                &--title{
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #4a4a4a;
+                    line-height: 0.75;
+                }
+                &--check {
+                    margin-top: 5%;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+}
+
+@media (min-width: $desktop) {
+    .container {
+    .title{
+        padding-top: 8vw;
+        padding-bottom: 4vw;
+    }
+    .wrapper {
+        padding: 2% 17%;
+        .cart{
+            &-list {
+               padding: .8% 0;
+               ul {
+                   li {
+                       margin-top: 10%;
+                       &:first-child {
+                           margin-top: 0;
+                       }
+                   }
+               }
+            }
+            &-buttons {
+                padding: 3% 0;
+                display: flex;
+            }
+            &-total {
+                padding: 5%;
+                &--check {
+                    margin-top: 5%;
+                    width: 100%;
+                    padding: 2%;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
 }
 </style>

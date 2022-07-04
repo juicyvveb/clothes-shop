@@ -18,8 +18,13 @@ ul, h1, h2, h3, p, h4, h5, input, button, select, a {
             font-weight: bold;
             padding: 3%;
             box-sizing: border-box;
-            margin-top: 10px;
             border-radius: 4px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+
+            @media (min-width: $laptop){
+                padding: 1%;
+            }
 }
 
 $laptop: '768px';
