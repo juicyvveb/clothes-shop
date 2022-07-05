@@ -14,7 +14,20 @@ const store = createStore({
     },
     getters: {
       card(s){
-        return s.card ? s.card: []
+        function filter(){
+          const values = Object.values(s.card);
+          const keys = Object.keys(s.card);
+          let res = s.catalog.filter(el => values.indexOf(el.id) >= 0);
+          for(let i = 0; i < res.length; i++){
+            for(let k = 0; k < keys.length; k++){
+              if(res[i].id == s.card[keys[k]]){
+                res[i].pid = keys[k]
+              }
+            }
+          }
+          return res
+        }
+        return s.card ? filter() : []
       }
     },
     mutations: {

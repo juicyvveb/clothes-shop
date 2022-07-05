@@ -5,21 +5,21 @@
                 <img src="" alt="">
             </div>
             <div class="item-title">
-                <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, quos!</p>
+                <h3>{{info?.title}}</h3>
+                <p>{{info?.description}}</p>
             </div>
             <div class="item-info">
                 <div class="item-info--color">
                     <h4>Color:</h4>
-                    <span>Beige</span>
+                    <span>{{info?.color}}</span>
                 </div>
                 <div class="item-info--size">
                     <h4>Size:</h4>
-                    <span>L</span>
+                    <span>{{info?.size}}</span>
                 </div>
                 <div class="item-info--color">
                     <h4>Price:</h4>
-                    <span>$3.99</span>
+                    <span>{{info?.price}}</span>
                 </div>
                 <div class="item-info--count">
                     <h4>Count</h4>
@@ -34,12 +34,15 @@
                     <span>${{allSumForItem}}</span>
                 </div>
             </div>
+            <button @click="del(info.pid)">delete</button>
         </div>
     </div>
 </template>
 
 <script>
+import {deleteItem} from "../assets/js/database";
 export default {
+    props: ['info'],
     data(){
         return{
             count: 1,
@@ -57,6 +60,10 @@ export default {
         },
         plus(){
             return this.count++
+        },
+        async del(pid){
+            const uid = await this.$store.dispatch('getUid');
+            deleteItem(uid, pid)
         }
     }
 }

@@ -2,21 +2,20 @@
     <div class="container">
             <div class="title">
                 <h3>Shopping Cart</h3>
-                <p>{{card}}</p>
             </div>
             <button @click="del()">delete</button>
             <div class="wrapper">
-                <p>{{need}}</p>
+                <p>Card:::{{card.length}}</p>
                 <div class="cart">
                     <div class="cart-list">
                         <ul>
-                            <li v-for="(item, i) in 3" :key="i">
-                                <span>{{i}}</span><cartItem/>
+                            <li v-for="(item) in card" :key="item">
+                                <span>{{item}}</span><cartItem :info="item"/>
                             </li>
                         </ul>
                     </div>
                     <div class="cart-buttons">
-                        <button class="cart-buttons--clear button">clear cart</button>
+                        <button class="cart-buttons--clear button" @click="clear()">clear cart</button>
                         <button class="button">continue shopping</button>
                     </div>
                     <div class="cart-total">
@@ -33,7 +32,7 @@
 
 <script>
 import cartItem from './cartItem.vue';
-import {deleteItem} from '../assets/js/database';
+import {clearCart} from '../assets/js/database';
 export default {
     async mounted(){
         console.log(this.card)
@@ -42,22 +41,13 @@ export default {
         card(){
             return this.$store.getters.card
         },
-        catalog(){
-            return this.$store.state.catalog
-        },
-        need(){
-            const id = Object.values(this.card)
-            return this.catalog.filter(el => id.indexOf(el.id) >= 0)
-        },
-      
     },
     methods: {
-        async del(){
-            const id = '-N69SCaPoGJfbqY0Xlbx';
+        async clear(){
             const uid = await this.$store.dispatch('getUid');
-            return deleteItem(uid, id)
+            clearCart(uid)
         }
-    }, 
+    },
     components: {
         cartItem,
     },
