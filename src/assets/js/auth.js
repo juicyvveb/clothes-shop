@@ -5,7 +5,9 @@ import {
     onAuthStateChanged, 
     getAuth,
     signOut,
-    createUserWithEmailAndPassword} from "firebase/auth";
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "firebase/auth";
 
 
 import { writeUserData } from './database';
@@ -27,20 +29,27 @@ export default{
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     const uid = user.uid;
-                    commit('stateUser', uid);
+                    commit('stateUser', user);
                     dispatch('buildCard', uid)
                 } else {
                     commit('stateUser', null);
                 }
             });
         },
-        async register({dispatch, commit}, {email, password, name}){
+        register({dispatch, commit}, {email, password, name}){
             dispatch
             commit
             try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                let id = await dispatch('getUid');
-                writeUserData(id, {name, email})
+                // await createUserWithEmailAndPassword(auth, email, password);
+                // await updateProfile(auth.currentUser, {displayName: name})
+                // let id = await dispatch('getUid');
+                // writeUserData(id, {name, email})
+                createUserWithEmailAndPassword(auth, email, password)
+                .then(async userCredential => {
+                    updateProfile(userCredential.user, {displayName: name});
+                    let id = await dispatch('getUid');
+                    writeUserData(id, {name, email})
+                });                
             }
             catch (e){ 
                 throw new Error(e)
@@ -50,7 +59,6 @@ export default{
             try {
                 await signOut(auth);
                 commit('stateUser', '');
-                console.log('loged out')
             }
             catch(e){
                 console.log('______' + e.message)

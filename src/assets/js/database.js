@@ -1,5 +1,5 @@
 import {app} from './firebase';
-import {getDatabase, ref, set, onValue, push} from 'firebase/database';
+import {getDatabase, ref, set, onValue, push, remove} from 'firebase/database';
 
 const db = getDatabase(app);
 
@@ -19,6 +19,7 @@ const module = {
         async buildCard(context,uid){
             const card = ref(db, 'users/' + uid + '/card')
             onValue(card, (snapshot) => {
+                console.log('change cart')
                 context.commit('stateCard', snapshot.val())
           });
         }
@@ -32,9 +33,20 @@ export function addProduct(uid, productId){
     set(newProduct, productId)
 }
 
-export function deleteItem(id, uid){
-    const delRef = ref(db, 'users/' + uid + '/card/' + id);
-    delRef.delete()
+export function deleteItem(uid, pid){
+    const delRef = ref(db, 'users/' + uid + '/card/' + pid);
+    remove(delRef)
+}
+
+export function clearCart(uid){
+    const delRef = ref(db, 'users/' + uid + '/card');
+    remove(delRef)
+}
+
+export function plusItem(uid, pid, newCount){
+    console.log(...arguments)
+    const plusRef = ref(db, 'users/' + uid + '/card/' + pid + '/id');
+    set(plusRef, newCount)
 }
 
 export {db, module}

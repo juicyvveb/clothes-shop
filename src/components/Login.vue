@@ -13,7 +13,20 @@
                     </form>
                 </div>
         </div>
-        <button type="submit" @click.prevent="logout()" class="form-button" v-if="loged">выйти</button>
+        <div class="loged" v-if="loged">
+            <div class="loged-icon"></div>
+            <div class="loged-info">
+                <div class="loged-info--name">
+                    <h3>Имя </h3>
+                    <p>{{name}}</p>
+                </div>
+                <div class="loged-info--email">
+                    <h3>Почта</h3>
+                    <p>{{userMail}}</p>
+                </div>
+            </div>
+            <button type="submit" @click.prevent="logout()" class="loged-button" v-if="loged">выйти</button>
+        </div>
     </div>
 </template>
 
@@ -37,13 +50,20 @@ export default {
         },
         async logout(){
             await this.$store.dispatch('logout')
-        }
+        },
     },
     computed: {
         loged(){
             return this.$store.state.user
+        },
+        name(){
+            return this.$store.state.user.displayName
+        },
+        userMail(){
+            return this.$store.state.user.email
         }
-    }
+    },
+    
 }
 </script>
 
@@ -92,16 +112,56 @@ export default {
                 }
             }
         }
+        .loged {
+            width: 70%;
+            background: $white;
+            border-radius: 5px;
+            padding: 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            &-icon {
+                width: 30%;
+                max-height: 60px;
+                @include background;
+                align-self: stretch;
+                background-image: url('../assets/img/user.png');
+            }
+            &-info{
+                flex-grow: 2;
+                &--name, &--email {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10%;
+                border-bottom: 1px solid $black;
+                    p {
+                        color: $black;
+                        font-style: italic;
+                    }
+                }
+                &--email {
+                        margin-bottom: 0;
+                }
+            }
+            
+            &-button {
+                margin: auto;
+                margin-top: 10%;
+                @include button;
+            }
+        }
     }
 
     @media (min-width: $desktop){
         .container{
         padding-top: 6vw;
         min-height: 30vh;
-        .login {
-            padding: 2% 4%;
-            width: 20%;
+            .login {
+                padding: 2% 4%;
+                width: 20%;
+                
+            }
         }
-    }
     }
 </style>

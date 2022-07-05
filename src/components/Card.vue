@@ -2,25 +2,22 @@
     <div class="container">
             <div class="title">
                 <h3>Shopping Cart</h3>
-                <p>{{card}}</p>
             </div>
-            <button @click="del()">delete</button>
             <div class="wrapper">
-                <p>{{need}}</p>
                 <div class="cart">
                     <div class="cart-list">
-                        <ul>
-                            <li v-for="(item, i) in 3" :key="i">
-                                <span>{{i}}</span><cartItem/>
+                        <TransitionGroup tag="ul" name="list">
+                            <li v-for="(item,i) in card" :key="item">
+                                <span>{{i+1}}</span><cartItem :info="item"/>
                             </li>
-                        </ul>
+                        </TransitionGroup>
                     </div>
                     <div class="cart-buttons">
-                        <button class="cart-buttons--clear button">clear cart</button>
+                        <button class="cart-buttons--clear button" @click="clear()">clear cart</button>
                         <button class="button">continue shopping</button>
                     </div>
                     <div class="cart-total">
-                        <h4 class="cart-total--title">Cart Total</h4>
+                        <h4 class="cart-total--title">Cart Total: {{card.length}}</h4>
                         <div class="cart-total--check">
                             <h5>Total</h5>
                             <span>$29.90</span>
@@ -33,7 +30,7 @@
 
 <script>
 import cartItem from './cartItem.vue';
-import {deleteItem} from '../assets/js/database';
+import {clearCart} from '../assets/js/database';
 export default {
     async mounted(){
         console.log(this.card)
@@ -42,22 +39,13 @@ export default {
         card(){
             return this.$store.getters.card
         },
-        catalog(){
-            return this.$store.state.catalog
-        },
-        need(){
-            const id = Object.values(this.card)
-            return this.catalog.filter(el => id.indexOf(el.id) >= 0)
-        },
-      
     },
     methods: {
-        async del(){
-            const id = '-N69SCaPoGJfbqY0Xlbx';
+        async clear(){
             const uid = await this.$store.dispatch('getUid');
-            return deleteItem(uid, id)
+            clearCart(uid)
         }
-    }, 
+    },
     components: {
         cartItem,
     },
@@ -216,5 +204,37 @@ export default {
         }
     }
 }
+}
+
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+@media(min-width: $desktop){
+    .list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(0);
+}
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
 }
 </style>

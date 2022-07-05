@@ -8,6 +8,9 @@ ul, h1, h2, h3, p, h4, h5, input, button, select, a {
 * {
     box-sizing: border-box;
 }
+button {
+    cursor: pointer;
+}
 
 
 @mixin button {
@@ -25,6 +28,12 @@ ul, h1, h2, h3, p, h4, h5, input, button, select, a {
             @media (min-width: $laptop){
                 padding: 1%;
             }
+}
+
+@mixin background {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 $laptop: '768px';

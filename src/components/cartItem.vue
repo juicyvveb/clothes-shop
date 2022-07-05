@@ -2,31 +2,31 @@
     <div class="container">
         <div class="item">
             <div class="item-img">
-                <img src="" alt="">
+                <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
             </div>
             <div class="item-title">
-                <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, quos!</p>
+                <h3>{{info?.title}}</h3>
+                <p>{{info?.description}}</p>
             </div>
             <div class="item-info">
                 <div class="item-info--color">
                     <h4>Color:</h4>
-                    <span>Beige</span>
+                    <span>{{info?.color}}</span>
                 </div>
                 <div class="item-info--size">
                     <h4>Size:</h4>
-                    <span>L</span>
+                    <span>{{info?.size}}</span>
                 </div>
                 <div class="item-info--color">
                     <h4>Price:</h4>
-                    <span>$3.99</span>
+                    <span>{{info?.price}}</span>
                 </div>
                 <div class="item-info--count">
                     <h4>Count</h4>
                     <div class="counter">
                         <button @click="minus()">-</button>
-                        <span>{{count}}</span>
-                        <button @click="plus()">+</button>
+                        <span>{{info?.count}}</span>
+                        <button @click="plus(info.pid, info.count + 1)">+</button>
                     </div>
                 </div>
                 <div class="item-info--all">
@@ -34,29 +34,44 @@
                     <span>${{allSumForItem}}</span>
                 </div>
             </div>
+            <div class="item-button">
+                <button class="delbutton" @click="del(info.pid)"></button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import {deleteItem, plusItem} from "../assets/js/database";
 export default {
+    props: ['info'],
     data(){
         return{
-            count: 1,
-            price: 3 
+            count: this.info.count
         }
     },
     computed: {
         allSumForItem(){
             return this.count * this.price
-        }
+        },
+        price(){
+            return this.info.price
+        },
     },
     methods: {
         minus(){
             return this.count - 1 <= 0 ? this.count = 0 : this.count--
         },
-        plus(){
-            return this.count++
+        // plus(){
+        //     return this.count++
+        // },
+        async del(pid){
+            const uid = await this.$store.dispatch('getUid');
+            deleteItem(uid, pid)
+        },
+        async plus(pid, newCount){
+            const uid = await this.$store.dispatch('getUid');
+            plusItem(uid, pid, newCount)
         }
     }
 }
@@ -67,12 +82,15 @@ export default {
 .container {
     text-align: left;
     .item {
-                border-bottom: 1px solid $gray;
-                padding-bottom: 10%;
+        position: relative;
+        border-bottom: 1px solid $gray;
+        padding-bottom: 10%;
         &-img {
             width: 30%;
-            background: red;
             margin-bottom: 7%;
+            img{
+                width: 100%;
+            }
         }
         &-title{
             margin-bottom: 7%;
@@ -122,21 +140,65 @@ export default {
                 }
             }
         }
-
+        &-button{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10vw;
+            height: 10vw;
+            padding: 1%;
+            display: flex;
+            align-items: center;
+            button {
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                background: none;
+                border:  none;
+                &::before, &::after{
+                content: '';
+                width: 100%;
+                height: 4px;
+                display: block;
+                background: rgb(245, 72, 72);
+                position: absolute;
+                top: calc(50% - 2px);
+                border-radius: 4px;
+                transition: all .3s ease-in-out;
+                }
+                 &::before{
+                     transform: rotate(45deg);
+                 }
+                 &::after{
+                     transform: rotate(-45deg);
+                }
+                &:hover {
+                        &::after, &::before {background: rgb(187, 18, 18);}
+                    }
+            }
+        }
     }
 }
 
 @media(min-width: $laptop){
     .container {
     .item {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 5%;
         &-img {
             width: 20%;
             margin-bottom: 4%;
         }
         &-title{
             margin-bottom: 4%;
+            width: 100%;
+            order: 4;
         }
         &-info {
+            flex-grow: 2;
+            padding-left: 5%;
             div{
                 margin-bottom: 4%;
                 flex-grow: 2;
@@ -148,7 +210,10 @@ export default {
                 }
             }
         }
-
+        &-button{
+            width: 5vw;
+            height: 5vw;
+        }
     }
 }
 }
@@ -169,6 +234,8 @@ export default {
             margin-bottom: 0;
         }
         &-title{
+            order: 0;
+            width: auto;
             margin-bottom: 0;
             flex-grow: 1.5;
             text-align: center;
@@ -202,7 +269,13 @@ export default {
                 }
             }
         }
-
+        &-button{
+            top: 0;
+            right: 0;
+            width: 3vw;
+            height: 3vw;
+            transform: translate(20%, -20%);
+        }
     }
 }
 }
