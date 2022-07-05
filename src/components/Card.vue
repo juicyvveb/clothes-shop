@@ -2,8 +2,11 @@
     <div class="container">
             <div class="title">
                 <h3>Shopping Cart</h3>
+                <p>{{card}}</p>
             </div>
+            <button @click="del()">delete</button>
             <div class="wrapper">
+                <p>{{need}}</p>
                 <div class="cart">
                     <div class="cart-list">
                         <ul>
@@ -30,12 +33,31 @@
 
 <script>
 import cartItem from './cartItem.vue';
+import {deleteItem} from '../assets/js/database';
 export default {
+    async mounted(){
+        console.log(this.card)
+    },
     computed: {
         card(){
-            return this.$store.state.card
-        }
+            return this.$store.getters.card
+        },
+        catalog(){
+            return this.$store.state.catalog
+        },
+        need(){
+            const id = Object.values(this.card)
+            return this.catalog.filter(el => id.indexOf(el.id) >= 0)
+        },
+      
     },
+    methods: {
+        async del(){
+            const id = '-N69SCaPoGJfbqY0Xlbx';
+            const uid = await this.$store.dispatch('getUid');
+            return deleteItem(uid, id)
+        }
+    }, 
     components: {
         cartItem,
     },

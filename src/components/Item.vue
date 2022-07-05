@@ -41,7 +41,7 @@
                                 <div class="buttons-like">
                                     <button type="button" @click.prevent="toLocalStorage(info)"></button>
                                 </div>
-                                <div class="buttons-buy">
+                                <div class="buttons-buy" @click.prevent="addToCart(info.id)">
                                     <button type="button"></button>
                                 </div>
                             </div>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import {addProduct} from '../assets/js/database';
 export default {
     props: ['info'],
     data(){
@@ -71,6 +72,10 @@ export default {
                 let arr = [product];
                 localStorage.setItem('liked', JSON.stringify(arr))
            }
+        },
+        async addToCart(productId){
+            const uid = await this.$store.dispatch('getUid')
+            addProduct(uid, productId);
         }
     },
 }

@@ -9,6 +9,12 @@ const store = createStore({
         catalog: [],
         user: '',
         toBuy: '',
+        card: '',
+      }
+    },
+    getters: {
+      card(s){
+        return s.card ? s.card: []
       }
     },
     mutations: {
@@ -19,7 +25,6 @@ const store = createStore({
         state.user = payload;
       },
       stateCard(state, payload){
-        console.log('state card')
         state.card = payload;
       },
     },
