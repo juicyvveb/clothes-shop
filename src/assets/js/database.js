@@ -43,4 +43,10 @@ export function clearCart(uid){
     remove(delRef)
 }
 
+export function plusItem(uid, pid, newCount){
+    console.log(...arguments)
+    const plusRef = ref(db, 'users/' + uid + '/card/' + pid + '/id');
+    set(plusRef, newCount)
+}
+
 export {db, module}

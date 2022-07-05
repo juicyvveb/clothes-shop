@@ -21,7 +21,8 @@ const store = createStore({
           for(let i = 0; i < res.length; i++){
             for(let k = 0; k < keys.length; k++){
               if(res[i].id == s.card[keys[k]]){
-                res[i].pid = keys[k]
+                res[i].pid = keys[k];
+                res[i].count = 1
               }
             }
           }
