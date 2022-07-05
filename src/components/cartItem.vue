@@ -5,7 +5,7 @@
                 <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
             </div>
             <div class="item-title">
-                <h3>{{info?.title}}</h3>
+                <h3>{{info?.title}} ID: {{info.id}}</h3>
                 <p>{{info?.description}}</p>
             </div>
             <div class="item-info">
@@ -24,9 +24,9 @@
                 <div class="item-info--count">
                     <h4>Count</h4>
                     <div class="counter">
-                        <button @click="minus()">-</button>
+                        <button @click="minus(info.pid, info.id)">-</button>
                         <span>{{info?.count}}</span>
-                        <button @click="plus(info.pid, info.count + 1)">+</button>
+                        <button @click="plus(info.pid, info.id)">+</button>
                     </div>
                 </div>
                 <div class="item-info--all">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="item-button">
-                <button class="delbutton" @click="del(info.pid)"></button>
+                <button class="delbutton" @click="del(info.pid, info.id)"></button>
             </div>
         </div>
     </div>
@@ -59,20 +59,18 @@ export default {
         },
     },
     methods: {
-        minus(){
-            return this.count - 1 <= 0 ? this.count = 0 : this.count--
-        },
-        // plus(){
-        //     return this.count++
-        // },
         async del(pid){
             const uid = await this.$store.dispatch('getUid');
             deleteItem(uid, pid)
         },
-        async plus(pid, newCount){
+        async plus(pid, id){
             const uid = await this.$store.dispatch('getUid');
-            plusItem(uid, pid, newCount)
-        }
+            plusItem(uid, pid, id, ++this.count)
+        },
+        async minus(pid, id){
+            const uid = await this.$store.dispatch('getUid');
+            return this.count - 1 <= 0 ? this.del(this.info.pid) : plusItem(uid, pid, id, --this.count)
+        },
     }
 }
 </script>

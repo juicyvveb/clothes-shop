@@ -10,25 +10,31 @@ const store = createStore({
         user: '',
         toBuy: '',
         card: '',
+        allSum: 0,
       }
     },
     getters: {
       card(s){
         function filter(){
-          const values = Object.values(s.card);
+          const values = Object.values(s.card).map(el => el.productId);
           const keys = Object.keys(s.card);
           let res = s.catalog.filter(el => values.indexOf(el.id) >= 0);
           for(let i = 0; i < res.length; i++){
             for(let k = 0; k < keys.length; k++){
-              if(res[i].id == s.card[keys[k]]){
+              if(res[i].id == s.card[keys[k]].productId){
                 res[i].pid = keys[k];
-                res[i].count = 1
+                res[i].count = s.card[keys[k]].count
               }
             }
           }
           return res
         }
         return s.card ? filter() : []
+      },
+      allSum(s, getters){
+        return getters.card ? Object.values(getters.card).reduce((prev,curr) => {
+            return curr.count * curr.price + prev
+        }, 0) : 0
       }
     },
     mutations: {

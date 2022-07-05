@@ -19,7 +19,6 @@ const module = {
         async buildCard(context,uid){
             const card = ref(db, 'users/' + uid + '/card')
             onValue(card, (snapshot) => {
-                console.log('change cart')
                 context.commit('stateCard', snapshot.val())
           });
         }
@@ -30,7 +29,7 @@ const module = {
 export function addProduct(uid, productId){
     const cartRef = ref(db, 'users/' + uid + '/card');
     const newProduct = push(cartRef);
-    set(newProduct, productId)
+    set(newProduct, {productId: productId, count: 1})
 }
 
 export function deleteItem(uid, pid){
@@ -43,10 +42,10 @@ export function clearCart(uid){
     remove(delRef)
 }
 
-export function plusItem(uid, pid, newCount){
-    console.log(...arguments)
-    const plusRef = ref(db, 'users/' + uid + '/card/' + pid + '/id');
-    set(plusRef, newCount)
+export function plusItem(uid, pid, id, newCount){
+    console.log(id)
+    const plusRef = ref(db, 'users/' + uid + '/card/' + pid );
+    set(plusRef, {productId: id, count: newCount})
 }
 
 export {db, module}
