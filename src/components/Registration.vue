@@ -30,7 +30,7 @@ export default {
                 email: this.email,
                 password: this.password,
             }
-            await this.$store.dispatch('register', obj)
+            this.$store.dispatch('register', obj)
             .then(() => {
                 this.$router.push('/')
             })

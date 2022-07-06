@@ -2,15 +2,16 @@ import {createStore} from 'vuex';
 import getList from './assets/js/getList';
 import auth from './assets/js/auth';
 import {module as db} from './assets/js/database';
+import messages from './assets/utils/messages';
 
 const store = createStore({
     state () {
       return {
         catalog: [],
         user: '',
-        toBuy: '',
         card: '',
         allSum: 0,
+        error: '',
       }
     },
     getters: {
@@ -35,6 +36,9 @@ const store = createStore({
         return getters.card ? Object.values(getters.card).reduce((prev,curr) => {
             return curr.count * curr.price + prev
         }, 0) : 0
+      },
+      error(s){
+        return 'Что-то пошло не так' &&  messages[s.error] 
       }
     },
     mutations: {
@@ -47,6 +51,9 @@ const store = createStore({
       stateCard(state, payload){
         state.card = payload;
       },
+      stateError(state, payload){
+        state.error = payload;
+      }
     },
     actions: {
       loadCatalog: async(context, payload) => {

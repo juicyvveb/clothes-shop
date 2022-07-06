@@ -21,8 +21,9 @@ export default{
             try {
                 await signInWithEmailAndPassword(auth, email, password)
             }
-            catch (e){ 
-                throw new Error(e)
+             catch (e){ 
+                commit('stateError', e.code)
+                throw e
             }
         },
         change({dispatch, commit}){
@@ -39,33 +40,33 @@ export default{
         register({dispatch, commit}, {email, password, name}){
             dispatch
             commit
-            try {
                 // await createUserWithEmailAndPassword(auth, email, password);
                 // await updateProfile(auth.currentUser, {displayName: name})
                 // let id = await dispatch('getUid');
                 // writeUserData(id, {name, email})
-                createUserWithEmailAndPassword(auth, email, password)
+                return createUserWithEmailAndPassword(auth, email, password)
                 .then(async userCredential => {
                     updateProfile(userCredential.user, {displayName: name});
                     let id = await dispatch('getUid');
                     writeUserData(id, {name, email})
+                },
+                e => {
+                    commit('stateError', e.code)
+                    throw e
                 });                
-            }
-            catch (e){ 
-                throw new Error(e)
-            }
         },
         async logout({commit}){
             try {
                 await signOut(auth);
-                commit('stateUser', '');
+                commit('stateError', 'logout')
             }
             catch(e){
-                console.log('______' + e.message)
+                commit('stateError', e.code)
+                throw e
             }
         },
         getUid(){
-            return auth.currentUser.uid ? auth.currentUser.uid : null
+            return auth.currentUser ? auth.currentUser.uid : null
         }
     }
 }
