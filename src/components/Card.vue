@@ -3,6 +3,7 @@
             <div class="title">
                 <h3>Shopping Cart</h3>
             </div>
+            <p>{{card}}</p>
             <div class="wrapper">
                 <div class="cart">
                     <div class="cart-list">
@@ -20,7 +21,7 @@
                         <h4 class="cart-total--title">Cart Total: {{card.length}}</h4>
                         <div class="cart-total--check">
                             <h5>Total</h5>
-                            <span>$29.90</span>
+                            <span>{{sum}}</span>
                         </div>
                     </div>
                 </div>
@@ -32,13 +33,13 @@
 import cartItem from './cartItem.vue';
 import {clearCart} from '../assets/js/database';
 export default {
-    async mounted(){
-        console.log(this.card)
-    },
     computed: {
         card(){
             return this.$store.getters.card
         },
+        sum(){
+            return this.$store.getters.allSum;
+        }
     },
     methods: {
         async clear(){
