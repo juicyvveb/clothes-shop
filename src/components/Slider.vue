@@ -227,13 +227,8 @@ export default {
                 transition: all .3s ease-out;
                 align-items: center;
                 z-index: 10;
-                display: none;
-                &:hover{
-                    border-color: $gold;
-                     &:before{
-                        color: $gold;
-                    }
-                }
+                // display: none;
+                
                 &:before{
                     content: '<';
                     width: 50%;
@@ -287,7 +282,19 @@ export default {
         }
     }
 
-
+@media(max-width: $laptop){
+    .wrapper{
+        .slider{
+            &-button {
+                border: none;
+                &:before{
+                    color: $black;
+                    opacity: .8;
+                }
+            }
+        }
+    }
+}
 @media(min-width: $laptop){
 .wrapper {
     padding-top: 10vw;
@@ -371,6 +378,12 @@ export default {
              &-button {
                 width: 2vw;
                 height: 2vw;
+                &:hover{
+                    border-color: $gold;
+                     &:before{
+                        color: $gold;
+                    }
+                }
             }
             
         }

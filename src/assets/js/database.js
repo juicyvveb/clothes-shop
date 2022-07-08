@@ -26,7 +26,10 @@ const module = {
 }
 
 
-export function addProduct(uid, productId){
+export  function addProduct(uid, productId){
+    if(!uid){
+        return 
+    }
     const cartRef = ref(db, 'users/' + uid + '/card');
     const newProduct = push(cartRef);
     set(newProduct, {productId: productId, count: 1})

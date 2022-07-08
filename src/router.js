@@ -6,6 +6,7 @@ import Product from './components/Product.vue';
 import Login from './components/Login.vue';
 import Registration from './components/Registration.vue';
 import Card from './components/Card.vue';
+import Art from './components/Art.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -13,6 +14,7 @@ const routes = [
     { path: '/login', component: Login },
     { path: '/registration', component: Registration },
     { path: '/card', component: Card },
+    { path: '/art/:type', component: Art },
 ]
 
 const router = VueRouter.createRouter({

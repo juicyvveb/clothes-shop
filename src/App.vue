@@ -4,16 +4,18 @@
   <Header/>
   <div class="superContainer">
       <router-view></router-view>
-      <p>{{user}}</p>
+      <Layout/>
     <Footer/>         
   </div>   
 </div>
+
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import Footer from './components/Footer.vue';
+import Layout from './components/Layout.vue';
 
 export default {
   data(){
@@ -25,16 +27,12 @@ export default {
     await this.$store.dispatch('change');
     await this.$store.dispatch('buildCard');
   },
-  computed: {
-    user(){
-      return this.$store.state.user
-    }
-  },
   components: {
     Header,
     Menu,
     Footer,
-  }
+    Layout,
+  },
 }
 </script>
 

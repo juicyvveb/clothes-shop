@@ -2,7 +2,6 @@
     <div class="item" >
         <div class="item-images">
             <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
-            <!-- <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                 -->
         </div>
         <div class="item-info">
                             <div class="description">
@@ -38,11 +37,8 @@
                                 </div>
                             </div>
                             <div class="buttons">
-                                <div class="buttons-like">
-                                    <button type="button" @click.prevent="toLocalStorage(info)"></button>
-                                </div>
-                                <div class="buttons-buy" @click.prevent="addToCart(info.id)">
-                                    <button type="button"></button>
+                                <div :class="{'disabled' : isAdded, 'buttons-buy': true}" @click.prevent="addToCart(info.id)">
+                                    <button type="button" :disabled="isAdded"></button>
                                 </div>
                             </div>
                             
@@ -58,26 +54,21 @@ export default {
     data(){
         return {
             sizeValue: [],
-            sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl']
+            sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl'],
         }
     },
     methods: {
-        toLocalStorage(product){
-           if(localStorage.getItem('liked')){
-               let arr = JSON.parse(localStorage.getItem('liked'));
-               arr.push(product);
-               localStorage.setItem('liked', JSON.stringify(arr))
-           }
-           else {
-                let arr = [product];
-                localStorage.setItem('liked', JSON.stringify(arr))
-           }
-        },
-        async addToCart(productId){
-            const uid = await this.$store.dispatch('getUid')
-            addProduct(uid, productId);
+        addToCart(productId){
+            return this.$store.dispatch('getUid')
+            .then(uid => uid ? addProduct(uid, productId) : this.$store.commit('stateError', 'login'))
         }
     },
+    computed: {
+        isAdded(){
+            const card = this.$store.getters.card;
+            return Object.values(card).filter(el => el.id == this.info.id).length
+        }
+    }
 }
 </script>
 
@@ -101,7 +92,6 @@ export default {
                     &-info{
                         background-color: rgba(216, 213, 213, 0.5);
                         color: white;
-                        border-top: 3px solid;
                         display: flex;
                         flex-wrap: wrap;
                         align-items: stretch;
@@ -130,16 +120,13 @@ export default {
                             width: 100%;
                             display: flex;
                             min-height: 5vh;
+                            background: $black;
                             &-like, &-buy {
                                 flex-grow: 2;
                                 transition: all .3s ease-out;
-                                border-top: 1px solid $white;
-                                max-width: 50%;
                                 box-sizing: border-box;
-                                &:hover {
-                                    background:rgba(216, 213, 213, 0.5);
-                                    padding: 1% 7%;
-                                }
+                                padding: 2% 0; 
+                                border: none; 
                                 button{
                                     width: 100%;
                                     height: 100%;
@@ -158,34 +145,54 @@ export default {
                                         background-repeat: no-repeat;
                                     }
                                 }
-                                
                             }
                             &-buy{
-                                    border-left: 1px solid $white;
                                     button{
-                                        &::before{
-                                        
+                                        &::before{  
                                         background-image: url('../assets/img/cart.svg');
-                                        
+                                        }
+                                    }
+                            }
+                            &-buy.disabled {
+                                background: $green;
+                                    button{
+                                        &::before{  
+                                        content: 'Добавлено';
+                                        width: 100%;
+                                        font-size: xx-large;
+                                        color: white;
+                                        background-image: none;
                                         }
                                     }
                             }
                         }
+                        
 
                         .about {
                             display: none;
                         }
                     }
-                }
-    .catalog {
-        .item{
-            &-info{
-                border: 1px solid $white;
-            }
-        }
     }
 
-
+    @media (min-width: $desktop){
+        .item {
+            &-images{}
+            &-info{
+                    .buttons {
+                            
+                            &-like, &-buy {
+                                
+                                padding: 1% 0; 
+                                transition: all .3s ease-in-out;
+                                &:hover {
+                                    padding: 1.5%;
+                                    background-color: $green;
+                                }
+                            }
+                        }
+                    }
+    }
+    }
     //product page
     .product{
            .item {
@@ -229,9 +236,7 @@ export default {
                 }
                 .buttons {
                     margin-top: 10%;
-                    &-like, &-buy {
-                        border: 1px solid rgb(243, 240, 240);
-                    }
+                    
                     button {
                         min-height: 40px;
                     }
@@ -301,9 +306,6 @@ export default {
                 }
                 .buttons {
                     margin-top: 10%;
-                    &-like, &-buy {
-                        border: 1px solid rgb(243, 240, 240);
-                    }
                     button {
                         min-height: 40px;
                     }
@@ -325,7 +327,7 @@ export default {
                 }
             }
            } 
-    }
+        }
     }
 
     @media (min-width: $desktop){
@@ -365,9 +367,7 @@ export default {
                 }
                 .buttons {
                     margin-top: 10%;
-                    &-like, &-buy {
-                        border: 1px solid rgb(243, 240, 240);
-                    }
+                    width: 50%;
                     button {
                         min-height: 20px;
                     }
@@ -394,6 +394,6 @@ export default {
                 }
             }
            } 
-    }
+        }
     }
 </style>

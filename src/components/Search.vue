@@ -1,13 +1,17 @@
 <template>
      <form class="search-input">
-                        <input  id="search">
+                        <input  id="search" v-model="search">
                         <button></button>
     </form>
 </template>
 
 <script>
 export default {
-    
+    data(){
+        return {
+            search: '',
+        }
+    }
 }
 </script>
 

@@ -4,15 +4,15 @@
         @click.self="closeMenu($event)">
             <div  class="menu">
                 <ul class="menu-list">
-                    <li>women</li>
-                    <li>men</li>
-                    <li>kids</li>
-                    <li>home deco</li>
-                    <li>contact</li>
+                    <router-link v-for="(link, i) in links"
+                    :to="`/art/${link}`" 
+                    :key="i"
+                    @click="active = link, closeMenu()"
+                    :class="{active: type == link}">{{link}}</router-link>
                 </ul>
                 <ul class="menu-contacts">
                     <a class="fb" fb="#"></a>
-                   <a class="youtube" href="#"></a>
+                    <a class="youtube" href="#"></a>
                     <a class="gmail" href="#"></a>
                     <a class="inst" href="#"></a> 
                     <a class="tel" href="#"></a> 
@@ -31,6 +31,8 @@ export default {
     data(){
         return {
             isOpen: false,
+            active: '',
+            links: ['women', 'men', 'kids', 'home']
         }
     },
     components: {
@@ -54,8 +56,12 @@ export default {
                 touchFn('.wrapper', this.closeMenu)
             })
         }
+    },
+    computed: {
+        type(){
+         return this.$route.params.type
+        }
     }
-
 }
 </script>
 <style lang="scss" scoped>
@@ -120,12 +126,16 @@ export default {
                 }
                 &-list {
                     padding: 10% 0;
-                    li {
-                        
+                    display: flex;
+                    flex-direction: column;
+                    a {
                         text-align: left;
-                        padding: 5% 0;
                         font-size: 1.5em;
                         cursor: pointer;
+                        color: $black;
+                    }
+                    a.active{
+                        color: $green;
                     }
                 }
             }
@@ -178,13 +188,13 @@ export default {
                     justify-content: space-between;
                     height: 100%;
                     padding: 0;
-                    li {
+                    a {
                         box-sizing: border-box;
                         cursor: pointer;
                         padding: 0;
                         transition: all 0.3s ease-in;
                         &:hover{
-                            color: $white;
+                            color: $blue;
                         }   
                     }
                 }

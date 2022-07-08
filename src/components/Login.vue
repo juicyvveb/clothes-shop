@@ -152,16 +152,55 @@ export default {
             }
         }
     }
-
-    @media (min-width: $desktop){
+    @media(min-width: $laptop){
         .container{
-        padding-top: 6vw;
-        min-height: 30vh;
-            .login {
-                padding: 2% 4%;
-                width: 20%;
-                
+        padding-top: 8vw;
+        height: 40vh;
+        .login {
+            padding: 2% 2%;
+            width: 30%;
+            background: $white;
+        }
+        .loged {
+            width: 50%;
+            background: $white;
+            align-items: center;
+            &-icon {
+                width: 30%;
+                min-height: 40px;
+                align-self: center;
+                @include background;
+                background-image: url('../assets/img/user.png');
+                background-position: left;
+            }
+            &-info{
+                width: 70%;
+            }
+            
+            &-button {
+                margin: auto;
+                margin-top: 10%;
+                @include button;
             }
         }
+    }
+    }
+    @media (min-width: $desktop){
+        .container{
+        padding-top: 2vw;
+        height: 60vh;
+        .login {
+            padding: 2% 2%;
+            width: 20%;
+            background: $white;
+        }
+        .loged {
+            width: 30%;
+            padding: 2%;
+            &-icon {
+                min-height: 70px;
+            }
+        }
+    }
     }
 </style>

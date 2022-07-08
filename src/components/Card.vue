@@ -3,7 +3,6 @@
             <div class="title">
                 <h3>Shopping Cart</h3>
             </div>
-            <p>{{card}}</p>
             <div class="wrapper">
                 <div class="cart">
                     <div class="cart-list">
@@ -14,13 +13,15 @@
                         </TransitionGroup>
                     </div>
                     <div class="cart-buttons">
-                        <button class="cart-buttons--clear button" @click="clear()">clear cart</button>
-                        <button class="button">continue shopping</button>
+                        <button class="cart-buttons--clear button"
+                         @click="clear()"
+                         v-if="card.length">clear cart</button>
+                        <router-link to="/" class="button">continue shopping</router-link>
                     </div>
                     <div class="cart-total">
                         <h4 class="cart-total--title">Cart Total: {{card.length}}</h4>
                         <div class="cart-total--check">
-                            <h5>Total</h5>
+                            <h5>Total:</h5>
                             <span>{{sum}}</span>
                         </div>
                     </div>
@@ -200,6 +201,7 @@ export default {
                     width: 100%;
                     padding: 2%;
                     padding-left: 0;
+                    justify-content: flex-start;
                 }
             }
         }
@@ -220,7 +222,7 @@ export default {
 }
 
 @media(min-width: $desktop){
-    .list-move, /* apply transition to moving elements */
+    .list-move, 
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -233,8 +235,7 @@ export default {
 }
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
+
 .list-leave-active {
   position: absolute;
 }
