@@ -1,5 +1,6 @@
 export default {
-    'auth/invalid-email': 'Неверный пользователя с таким email не существует',
+    'auth/invalid-email': 'Пользователя с таким email не существует',
     'auth/wrong-password': "Неверный пароль",
-    'logout': 'Вы вышли из профиля :)'
+    'logout': 'Вы вышли из профиля :)',
+    'login': 'войдите, чтобы добавить товар',
 }

@@ -1,18 +1,6 @@
 <template>
     <section class="catalog">
         <h3 class="catalog-text">Popular on Little Closet</h3>
-        <!-- <div class="catalog-filter">
-            <input type="radio" class="catalog-filter--checkbox women" value="women" id="women" v-model="category">
-            <input type="radio" class="catalog-filter--checkbox men" value="men" id="men" v-model="category">
-            <input type="radio" class="catalog-filter--checkbox kids" value="kids" id="kids" v-model="category">
-            <input type="radio" class="catalog-filter--checkbox home" value="home" id="home" v-model="category">  
-            <div class="catalog-filter--labels">
-                <label :class="{active : isActive('women')}" for="women" >women</label>
-                <label :class="{active : isActive('men')}" for="men">men</label>
-                <label :class="{active : isActive('kids')}" for="kids" >kids</label>
-                <label :class="{active : isActive('home')}" for="home" >home</label>
-            </div>
-        </div> -->
         <div class="countShow">
             <div class="wrapper">
                 <h4 class="countCheck-text">{{showCount}}</h4>
@@ -73,6 +61,21 @@ export default {
 @import '../assets/scss/general.scss';
 .catalog {
     @include catalog;
+}
+
+.list-move,
+    .list-enter-active,
+    .list-leave-active {
+        transition: all .5s ease;
+        transition-delay:  opacity .5s;
+    }
+
+    .list-enter-from,
+    .list-leave-to {
+        opacity: 0;
+    }
+    .list-leave-active {
+    position: absolute;
 }
 
 </style>

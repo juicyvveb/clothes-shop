@@ -53,6 +53,9 @@ const store = createStore({
       },
       stateError(state, payload){
         state.error = payload;
+      },
+      searchItem(state, payload){
+        state.searchItem = payload;
       }
     },
     actions: {

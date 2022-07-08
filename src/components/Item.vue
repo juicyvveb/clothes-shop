@@ -2,7 +2,6 @@
     <div class="item" >
         <div class="item-images">
             <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
-            <!-- <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                 -->
         </div>
         <div class="item-info">
                             <div class="description">
@@ -61,16 +60,9 @@ export default {
     methods: {
         addToCart(productId){
             return this.$store.dispatch('getUid')
-            .then(uid => {
-                addProduct(uid, productId);
-            },
-            e => console.log(e.code))
+            .then(uid => uid ? addProduct(uid, productId) : this.$store.commit('stateError', 'login'))
         }
-        
     },
-    mounted(){
-            console.log(this.isAdded)
-        },
     computed: {
         isAdded(){
             const card = this.$store.getters.card;
@@ -194,6 +186,7 @@ export default {
                                 transition: all .3s ease-in-out;
                                 &:hover {
                                     padding: 1.5%;
+                                    background-color: $green;
                                 }
                             }
                         }

@@ -32,7 +32,7 @@ export default {
         return {
             isOpen: false,
             active: '',
-            links: ['women', 'men', 'kids', 'home', 'contact']
+            links: ['women', 'men', 'kids', 'home']
         }
     },
     components: {
@@ -188,13 +188,13 @@ export default {
                     justify-content: space-between;
                     height: 100%;
                     padding: 0;
-                    li {
+                    a {
                         box-sizing: border-box;
                         cursor: pointer;
                         padding: 0;
                         transition: all 0.3s ease-in;
                         &:hover{
-                            color: $white;
+                            color: $blue;
                         }   
                     }
                 }
