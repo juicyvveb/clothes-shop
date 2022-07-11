@@ -1,6 +1,7 @@
 <template>
     <section class="catalog">
         <h3 class="catalog-text">Popular on Little Closet</h3>
+        <h3 v-if="!catalog.length">таких товаров нет :(</h3>
         <div class="countShow">
             <div class="wrapper">
                 <h4 class="countCheck-text">{{showCount}}</h4>
@@ -51,7 +52,7 @@ export default {
     },
     computed: {
         catalog(){
-            return this.$store.state.catalog
+            return this.$store.getters.catalog
         }
     }
 }

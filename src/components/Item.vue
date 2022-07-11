@@ -11,6 +11,9 @@
                                 <p class="description-category">
                                     type: {{info.type}}
                                 </p>
+                                <p class="description-category">
+                                    color: {{info.color}}
+                                </p>
                             </div>
                             <div class="rate">
                                 <h4 class="rate--starks">

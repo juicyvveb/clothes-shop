@@ -12,6 +12,7 @@ const store = createStore({
         card: '',
         allSum: 0,
         error: '',
+        searchItem: '',
       }
     },
     getters: {
@@ -39,6 +40,12 @@ const store = createStore({
       },
       error(s){
         return 'Что-то пошло не так' &&  messages[s.error] 
+      },
+      catalog(s){
+        function filter(){
+          return s.catalog.filter(el => el.color.includes(s.searchItem.trim()))
+        }
+        return s.searchItem ? filter() : s.catalog
       }
     },
     mutations: {
@@ -62,6 +69,9 @@ const store = createStore({
       loadCatalog: async(context, payload) => {
         await getList.then(res => payload = res);
         context.commit('loadCatalog', payload)
+      },
+      changeSearch(context, payload){
+        context.commit('searchItem', payload)
       },
     },
     modules: {

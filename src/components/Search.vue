@@ -1,6 +1,6 @@
 <template>
      <form class="search-input">
-                        <input  id="search" v-model="search">
+                        <input  id="search" v-model="search" placeholder="введите цвет: ">
                         <button></button>
     </form>
 </template>
@@ -10,6 +10,11 @@ export default {
     data(){
         return {
             search: '',
+        }
+    },
+    watch:{
+        search(){
+            this.$store.dispatch('changeSearch', this.search)
         }
     }
 }
