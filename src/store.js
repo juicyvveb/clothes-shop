@@ -25,6 +25,7 @@ const store = createStore({
             for(let k = 0; k < keys.length; k++){
               if(res[i].id == s.card[keys[k]].productId){
                 res[i].pid = keys[k];
+                res[i].size = s.card[keys[k]].size
                 res[i].count = s.card[keys[k]].count
               }
             }

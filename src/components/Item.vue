@@ -31,9 +31,12 @@
                                 <div class="size">
                                     <h3>Select size</h3>
                                     <div class="size-checkbox">
-                                        <input v-for="(size, i) in sizes" :key="i" :value="size" :id="size" type="checkbox" v-model="sizeValue">
-                                        <label v-for="(size, i) in sizes" :key="i" :for="size"><span>{{size}}</span></label>
+                                        <input  v-for="(size, i) in sizes"  :key="i" :value="size" :id="size" type="checkbox" v-model="sizeValue">
+                                        <label  v-for="(size, i) in sizes" :key="i" :for="size" :class="{active: sizeValue.indexOf(size) >= 0}">
+                                            <span>{{size}}</span>
+                                        </label>
                                     </div>
+                                    <h4>{{sizeValue}}</h4>
                                     <p class="size-text">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa suscipit similique laudantium, asperiores itaque incidunt enim autem iste qui libero, beatae ea obcaecati quibusdam nisi porro inventore soluta quam doloremque!
                                     </p>
@@ -60,10 +63,16 @@ export default {
             sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl'],
         }
     },
+    mounted(){
+        console.log(this.info.id)
+    },
     methods: {
         addToCart(productId){
             return this.$store.dispatch('getUid')
-            .then(uid => uid ? addProduct(uid, productId) : this.$store.commit('stateError', 'login'))
+            .then(uid => uid ? addProduct(uid, productId, this.sizeValue) : this.$store.commit('stateError', 'login'))
+        },
+        show($event){
+            console.log($event.target)
         }
     },
     computed: {
@@ -215,6 +224,9 @@ export default {
                                     span {
                                         font-size: 100%;
                                     }
+                                }
+                                label.active{
+                                    border-color:$green;
                                 }
                             }
                             }
