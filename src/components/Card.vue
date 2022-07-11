@@ -3,12 +3,18 @@
             <div class="title">
                 <h3>Shopping Cart</h3>
             </div>
+            <h3 v-if="!card.length " class="warning"> товаров пока нет :( 
+                <h4 v-if="!user">войдите, чтобы добавить товары</h4>
+            </h3>
             <div class="wrapper">
                 <div class="cart">
                     <div class="cart-list">
                         <TransitionGroup tag="ul" name="list">
                             <li v-for="(item,i) in card" :key="item">
-                                <span>{{i+1}}</span><cartItem :info="item"/>
+                                <span>{{i+1}}</span>
+                                <router-link :to="`/product/${item.id}`">
+                                    <cartItem :info="item"/>
+                                </router-link>
                             </li>
                         </TransitionGroup>
                     </div>
@@ -40,6 +46,9 @@ export default {
         },
         sum(){
             return this.$store.getters.allSum;
+        },
+        user(){
+            return this.$store.state.user
         }
     },
     methods: {
@@ -69,6 +78,13 @@ export default {
             font-weight: 700;
             line-height: 0.75;
         }
+    }
+    .warning {
+            margin-top: 7%;
+            font-size: 36px;
+            color: $black;
+            font-weight: 700;
+            line-height: 0.75;
     }
     .wrapper {
         padding: 4%;

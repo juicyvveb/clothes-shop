@@ -24,9 +24,9 @@
                 <div class="item-info--count">
                     <h4>Count</h4>
                     <div class="counter">
-                        <button @click="minus(info.pid, info.id)">-</button>
+                        <button @click.prevent="minus(info.pid, info.id)">-</button>
                         <span>{{info?.count}}</span>
-                        <button @click="plus(info.pid, info.id)">+</button>
+                        <button @click.prevent="plus(info.pid, info.id)">+</button>
                     </div>
                 </div>
                 <div class="item-info--all">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="item-button">
-                <button class="delbutton" @click="del(info.pid, info.id)"></button>
+                <button class="delbutton" @click.prevent="del(info.pid, info.id)"></button>
             </div>
         </div>
     </div>

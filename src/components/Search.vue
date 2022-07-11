@@ -1,7 +1,7 @@
 <template>
      <form class="search-input">
-                        <input  id="search" v-model="search" placeholder="введите цвет: ">
-                        <button></button>
+        <input  id="search" v-model="search" placeholder="введите цвет: ">
+        <button></button>
     </form>
 </template>
 
@@ -38,6 +38,7 @@ export default {
         box-sizing: border-box;
         border: none;
         padding: 4% 0% 4% 0%;
+        box-shadow: inset 0px 0px 20px 20px white;
     }
     button {
         width: 4vw;

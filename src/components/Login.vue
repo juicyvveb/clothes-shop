@@ -52,6 +52,9 @@ export default {
             await this.$store.dispatch('logout')
         },
     },
+    mounted() {
+        console.log('LOGIN!!!!!!!!!!!!')
+    },
     computed: {
         loged(){
             return this.$store.state.user
