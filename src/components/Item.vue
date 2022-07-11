@@ -11,6 +11,9 @@
                                 <p class="description-category">
                                     type: {{info.type}}
                                 </p>
+                                <p class="description-category">
+                                    color: {{info.color}}
+                                </p>
                             </div>
                             <div class="rate">
                                 <h4 class="rate--starks">
@@ -31,7 +34,7 @@
                                         <input v-for="(size, i) in sizes" :key="i" :value="size" :id="size" type="checkbox" v-model="sizeValue">
                                         <label v-for="(size, i) in sizes" :key="i" :for="size"><span>{{size}}</span></label>
                                     </div>
-                                    <p>
+                                    <p class="size-text">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa suscipit similique laudantium, asperiores itaque incidunt enim autem iste qui libero, beatae ea obcaecati quibusdam nisi porro inventore soluta quam doloremque!
                                     </p>
                                 </div>
@@ -105,6 +108,9 @@ export default {
                             justify-content: space-between;
                             padding: 5%;
                             box-sizing: border-box;
+                            &-category, &-text {
+                                text-shadow: 1px 1px 2px $black;
+                            }
                         }
                         .rate{
                             padding: 5%;
@@ -159,7 +165,7 @@ export default {
                                         &::before{  
                                         content: 'Добавлено';
                                         width: 100%;
-                                        font-size: xx-large;
+                                        font-size: x-large;
                                         color: white;
                                         background-image: none;
                                         }
@@ -167,19 +173,89 @@ export default {
                             }
                         }
                         
-
                         .about {
-                            display: none;
-                        }
+                            padding: 4%;
+                            display: flex;
+                            color: #4a4a4a;
+                            width: 100%;
+                            .size {
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                justify-content: space-between;
+                                h3 {
+                                        font-size: 18px;
+                                        font-weight: 700;
+                                        color: #4a4a4a;
+                                }
+                                p {
+                                    font-size: 14px;
+                                    font-weight: 300;
+                                    color: #969696;
+                                    line-height: 1.5;
+                                    text-align: left;
+                                }
+                                &-checkbox {
+                                    display: flex;
+                                    padding: 3% 0;
+                                    width: 70%;
+                                    justify-content: space-between;
+                                input {
+                                    display: none;
+                                }
+                                label {
+                                    width: 8vw;
+                                    height: 8vw;
+                                    padding: 3%;
+                                    border: 2px solid $black;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    span {
+                                        font-size: 100%;
+                                    }
+                                }
+                            }
+                            }
+                            p {
+                                display: none;
+                            }
                     }
+                }
     }
 
-    @media (min-width: $desktop){
+  
+    //product page
+     @media (min-width: $laptop){
         .item {
-            &-images{}
+            &-info{
+                .buttons {
+                    min-height: 4vh;
+                }
+                    .about{
+                        .size {
+                                
+                                
+                                &-checkbox {
+                                    width: 80%;
+                                
+                                label {
+                                    width: 4vw;
+                                    height: 4vw;
+                                }
+                            }
+                            }
+                    }    
+                }
+    }
+    }
+    
+      @media (min-width: $desktop){
+        .item {
             &-info{
                     .buttons {
-                            
+                            min-height: 2vw;
                             &-like, &-buy {
                                 
                                 padding: 1% 0; 
@@ -190,11 +266,31 @@ export default {
                                 }
                             }
                         }
-                    }
+                    .about{
+                        .size {
+                                
+                                
+                                &-checkbox {
+                                    width: 80%;
+                                
+                                label {
+                                    width: 2vw;
+                                    height: 2vw;
+                                    &:hover {
+                                        border-color: $blue;
+                                    }
+                                }
+                            }
+                            }
+                    }    
+                }
     }
     }
-    //product page
-    .product{
+
+
+
+    //отдельно карточка товара
+.product{
            .item {
             width: 100%;
             &-info {
@@ -241,45 +337,11 @@ export default {
                         min-height: 40px;
                     }
                 }
-                .about {
-                    display: flex;
-                    color: #4a4a4a;
-                    .size {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        h3 {
-                                font-size: 18px;
-                                font-weight: 700;
-                                color: #4a4a4a;
-                        }
+                .about{
+                    padding: 0;
+                    .size{
                         p {
-                            font-size: 14px;
-                            font-weight: 300;
-                            color: #969696;
-                            line-height: 1.5;
-                            text-align: left;
-                        }
-                        &-checkbox {
-                            display: flex;
-                            padding: 3% 0;
-                            width: 70%;
-                            justify-content: space-between;
-                            input {
-                                display: none;
-                            }
-                            label {
-                                width: 8vw;
-                                height: 8vw;
-                                padding: 3%;
-                                border: 2px solid $black;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                span {
-                                    font-size: 100%;
-                                }
-                            }
+                            display: block;
                         }
                     }
                 }
@@ -396,4 +458,5 @@ export default {
            } 
         }
     }
+
 </style>

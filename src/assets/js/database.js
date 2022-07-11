@@ -19,7 +19,8 @@ const module = {
         async buildCard(context,uid){
             const card = ref(db, 'users/' + uid + '/card')
             onValue(card, (snapshot) => {
-                context.commit('stateCard', snapshot.val())
+                
+                return uid ? context.commit('stateCard', snapshot.val()) : context.commit('stateCard', null) 
           });
         }
     }
@@ -46,7 +47,6 @@ export function clearCart(uid){
 }
 
 export function plusItem(uid, pid, id, newCount){
-    console.log(id)
     const plusRef = ref(db, 'users/' + uid + '/card/' + pid );
     set(plusRef, {productId: id, count: newCount})
 }

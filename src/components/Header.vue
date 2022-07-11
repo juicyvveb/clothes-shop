@@ -38,6 +38,11 @@ export default {
         Search,
         Menu,
     },
+    methods: {
+        show($event){
+            console.log($event.target)
+            }
+    }
 }
 </script>
 

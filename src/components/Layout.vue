@@ -2,9 +2,9 @@
     <div class="container" v-if="error" @click.self="close($event)">
             <div class="container-error">
                 <div class="container-error--content">
-                    <p>Ошибка: {{error}}</p>
+                    <p>{{error}}</p>
                     <div class="button">
-                        <button @click.stop="close()"></button>
+                        <button @click.stop="close($event)"></button>
                     </div>
                 </div>
         </div>
@@ -36,15 +36,14 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-   
+    z-index: 50;
     &-error {
         width: 60%;
-        background: $black;
-        position: sticky;
+        background: rgb(60, 233, 26);
+        position: fixed;
         top: 40vh; 
         left: 20%;
         border-radius: 5px;
-        box-shadow: 0px 0px 15px 15px rgba(0, 0, 0, .5);
         &--content {
             padding: 5%;
             p {

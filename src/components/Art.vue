@@ -49,7 +49,7 @@ export default {
             return this.$route.params.type
         },
         items(){
-            return this.$store.state.catalog.filter(el => el.type == this.type || el.type == this.category)
+            return this.$store.getters.catalog.filter(el => el.type == this.type || el.type == this.category)
         }
     },
 }

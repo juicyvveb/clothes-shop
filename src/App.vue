@@ -3,10 +3,10 @@
 <div class="content">
   <Header/>
   <div class="superContainer">
-      <router-view></router-view>
-      <Layout/>
-    <Footer/>         
-  </div>   
+    <router-view></router-view>
+  </div>
+  <Footer/>         
+  <Layout/>   
 </div>
 
 </template>
