@@ -63,9 +63,6 @@ export default {
             sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl'],
         }
     },
-    mounted(){
-        console.log(this.info.id)
-    },
     methods: {
         addToCart(productId){
             return this.$store.dispatch('getUid')

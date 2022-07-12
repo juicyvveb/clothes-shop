@@ -33,7 +33,7 @@ export  function addProduct(uid, productId, size){
     }
     const cartRef = ref(db, 'users/' + uid + '/card');
     const newProduct = push(cartRef);
-    set(newProduct, {productId: productId, count: size.length, size: size})
+    set(newProduct, {productId: productId, count: size.length ? size.length : 1, size: size})
 }
 
 export function deleteItem(uid, pid){

@@ -15,7 +15,10 @@
                 </div>
                 <div class="item-info--size">
                     <h4>Size:</h4>
-                    <span>{{info?.size}}</span>
+                    <div class="list">
+                        <p v-for="(size, i) in info.size" :key="i">{{size}}<span class="comma">,</span></p>
+                    </div>
+                    <p v-if="!info.size">не выбрано</p>
                 </div>
                 <div class="item-info--color">
                     <h4>Price:</h4>
@@ -119,6 +122,28 @@ export default {
                 h4{
                     width: 15%;
                     margin-right: 5%;
+                }
+            }
+            &--size {
+                align-items: center;
+                p {
+                    font-style: italic;
+                    font-size: 12px;
+                    color: $gray;
+                }
+                .list{
+                    display: flex;
+                    align-items: flex-end;
+                    p{
+                        font-size: 16px;
+                        margin-right: 10%;
+                    }
+                   p:last-child{
+                       
+                       .comma {
+                        display: none;
+                       }
+                   }
                 }
             }
             &--count {
