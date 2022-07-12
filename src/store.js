@@ -60,6 +60,7 @@ const store = createStore({
         state.cart = payload;
       },
       stateError(state, payload){
+        console.log(payload)
         state.error = payload;
       },
       searchItem(state, payload){
