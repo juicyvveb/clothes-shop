@@ -20,7 +20,7 @@
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
                     <li v-for="(item, i) in catalog" :key="i" v-show="i + 1 <= showCount">
                         <router-link :to="`/product/${item.id}`">
-                            <Item :info="item"/>
+                            <Item @click.self.prevent="1" :info="item"/>
                         </router-link>
                     </li>
                     </TransitionGroup>

@@ -1,6 +1,7 @@
 <template>
 <Menu/>
 <div class="content">
+  <h3 style="margin-top: 15vh">{{user}}</h3>
   <Header/>
   <div class="superContainer">
     <router-view></router-view>
@@ -20,6 +21,11 @@ import Layout from './components/Layout.vue';
 export default {
   data(){
     return {
+    }
+  },
+  computed:{
+    user(){
+      return this.$store.state.user.uid
     }
   },
   async mounted(){
