@@ -10,6 +10,6 @@ const firebaseConfig = {
   databaseURL: "https://littleclothes-26b5f-default-rtdb.firebaseio.com",
 };
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig) ;
 
 export {app}

@@ -5,7 +5,7 @@
                 <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
             </div>
             <div class="item-title">
-                <h3>{{info?.title}} ID: {{info.id}}</h3>
+                <h3>{{info?.title}}</h3>
                 <p>{{info?.description}}</p>
             </div>
             <div class="item-info">
@@ -20,7 +20,7 @@
                     </div>
                     <p v-if="!info.size">не выбрано</p>
                 </div>
-                <div class="item-info--color">
+                <div class="item-info--price">
                     <h4>Price:</h4>
                     <span>{{info?.price}}</span>
                 </div>
@@ -55,11 +55,8 @@ export default {
     },
     computed: {
         allSumForItem(){
-            return this.count * this.price
-        },
-        price(){
-            return this.info.price
-        },
+            return this.count * this.info.price
+        }
     },
     methods: {
         async del(pid){

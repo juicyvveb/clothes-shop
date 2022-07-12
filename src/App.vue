@@ -30,7 +30,7 @@ export default {
   async mounted(){
     this.$store.dispatch('loadCatalog')
     await this.$store.dispatch('change');
-    await this.$store.dispatch('buildCard');
+    await this.$store.dispatch('buildCart');
   },
   components: {
     Header,

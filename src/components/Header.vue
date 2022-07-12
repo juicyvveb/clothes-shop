@@ -12,11 +12,14 @@
             <router-link to="/login" class="user-checkout user-icon">
                 <img src="../assets/img/user.svg" alt="user">
             </router-link>
-            <router-link to="/card" class="user-card user-icon">
-                <img src="../assets/img/cart_b.svg" alt="card">
+            <router-link to="/cart" class="user-cart user-icon">
+                <img src="../assets/img/cart_b.svg" alt="cart">
+                <div class="wrapper">
+                    <span>{{cartLength }}</span>
+                </div>
             </router-link>
             <a class="user-tel user-icon" href="tel:+74951234567">
-                <img src="../assets/img/phone.svg" alt="card"><span>+1 912-252-7350</span>
+                <img src="../assets/img/phone.svg" alt="cart"><span>+1 912-252-7350</span>
             </a>
         </div>
     </div>
@@ -29,19 +32,15 @@ import Menu from './Menu.vue';
 
 
 export default {
-    data(){
-        return {
-        }
-    },
     components: {
         Burger,
         Search,
         Menu,
     },
-    methods: {
-        show($event){
-            console.log($event.target)
-            }
+    computed: {
+        cartLength(){
+            return this.$store.getters.cart.length
+        }
     }
 }
 </script>
@@ -82,6 +81,33 @@ export default {
             }
             &-tel {
                 display: none;
+            }
+            &-cart {
+                position: relative;
+                .wrapper{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transform: translate(30%, -30%);
+                    background: $green;
+                    width: 4vw;
+                    height: 4vw;
+                    border-radius: 50%;
+                    span { 
+                        font-weight: bold;
+                        // background: red;
+                        color: white;
+                        max-width: 100%;
+                        font-size: 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+                
             }
         }
         .search-input {

@@ -16,7 +16,6 @@ const auth = getAuth(app);
 export default{
     actions: {
         async login({commit}, {email, password}){
-       
             try {
                 await signInWithEmailAndPassword(auth, email, password)
             }
@@ -30,10 +29,10 @@ export default{
                 if (user) {
                     const uid = user.uid;
                     commit('stateUser', user);
-                    dispatch('buildCard', uid)
+                    dispatch('buildCart', uid)
                 } else {
                     commit('stateUser', null);
-                    dispatch('buildCard', null)
+                    dispatch('buildCart', null)
                 }
             });
         },
