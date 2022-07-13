@@ -32,9 +32,9 @@ export default {
     },
   },
   async mounted(){
-    this.$store.dispatch('loadCatalog')
     await this.$store.dispatch('change');
     await this.$store.dispatch('buildCart');
+    this.$store.dispatch('loadCatalog')
   },
   components: {
     Header,

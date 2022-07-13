@@ -1,8 +1,10 @@
 <template>
     <div class="item" >
-        <div class="item-images">
-            <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
-        </div>
+        <router-link :to="`/product/${info.id}`"> 
+            <div class="item-images">
+                <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
+            </div>
+        </router-link>
         <div class="item-info">
                             <div class="description">
                                 <h3 class="description-text">
@@ -27,23 +29,21 @@
                                 <div class="size">
                                     <h3>Select size</h3>
                                     <div :class="['size-checkbox', forget ? 'forget' : null]">
-                                        <input  v-for="(size, i) in sizes"  :key="i" :value="size" :id="size" type="checkbox" v-model="sizeValue">
-                                        <label  v-for="(size, i) in sizes" :key="i" :for="size" :class="{active: sizeValue.indexOf(size) >= 0}">
+                                        <input  v-for="(size, i) in sizes"  :key="i" :value="size" :id="info.id+size" type="checkbox" v-model="sizeValue">
+                                        <label  v-for="(size, i) in sizes" :key="i" :for="info.id+size" :class="{active: sizeValue.indexOf(size) >= 0, selected: isAdded().indexOf(size) >= 0}">
                                             <span>{{size}}</span>
                                         </label>
                                     </div>
-                                    <h4>{{sizeValue}}</h4>
                                     <p class="size-text">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa suscipit similique laudantium, asperiores itaque incidunt enim autem iste qui libero, beatae ea obcaecati quibusdam nisi porro inventore soluta quam doloremque!
                                     </p>
                                 </div>
                             </div>
                             <div class="buttons">
-                                <div :class="{'disabled' : isAdded, 'buttons-buy': true}" @click.prevent="addToCart(info.id)">
-                                    <button type="button" :disabled="isAdded"></button>
+                                <div :class="{'disabled' : isAdded().length, 'buttons-buy': true}" @click.prevent="addToCart(info.id)">
+                                    <button type="button" :disabled="isAdded().length"></button>
                                 </div>
                             </div>
-                            
         </div>
     </div>
     
@@ -57,12 +57,8 @@ export default {
         return {
             sizeValue: [],
             sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl'],
-            forget: false,
-        }
-    },
-    mounted(){
-        console.log(this.activeSize())
-    },
+            forget: false,        }
+    },  
     methods: {
         addToCart(productId){
             const size = (uid) => {
@@ -83,18 +79,20 @@ export default {
             return this.$store.dispatch('getUid')
             .then(uid => uid ? size(uid) : this.$store.commit('stateError', 'login'))
         },
-        async activeSize(){
-            const cart = await this.$store.getters.cart
-            return Object.values(cart)
-            .filter(el => el.id == this.info.id)[0]
+        isAdded(){
+            const cart =  this.$store.getters.cart;
+            return Object.values(cart).filter(el => el.id == this.info.id)[0]?.size || []
         }
     },
+    watch: {
+        cart(){
+            // console.log(this.isAdded())
+        },      
+    },
     computed: {
-        isAdded(){
-            const cart = this.$store.getters.cart;
-            return Object.values(cart).filter(el => el.id == this.info.id).length
+        cart(){
+            return this.$store.getters.cart
         },
-        
     }
 }
 </script>
@@ -244,7 +242,9 @@ export default {
                                 label.active{
                                     border-color:$green;
                                 }
-                                
+                                label.selected{
+                                    border-color:$green;
+                                }
                                 }
                                 &-checkbox.forget{
                                     label{

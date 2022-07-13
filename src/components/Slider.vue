@@ -14,7 +14,7 @@
                                 <img :src="require(`../assets/img/product_${i + 1}.jpg`)" class="slider-item--images---item">                
                                 <img :src="require(`../assets/img/product_${i + 1}.jpg`)" class="slider-item--images---item">                
                         </div>  
-                        <div class="item-info">
+                        <!-- <div class="item-info">
                             <div class="description">
                                 <h3 class="description-text">
                                     Cool clothing with brown strioes
@@ -43,7 +43,7 @@
                                     <button type="button"></button>
                                 </div>
                             </div>
-                        </div>      
+                        </div>       -->
                     </li>
                 </TransitionGroup>
         </div>  
