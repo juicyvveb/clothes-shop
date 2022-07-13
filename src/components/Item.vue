@@ -60,6 +60,9 @@ export default {
             forget: false,
         }
     },
+    mounted(){
+        console.log(this.activeSize())
+    },
     methods: {
         addToCart(productId){
             const size = (uid) => {
@@ -80,12 +83,18 @@ export default {
             return this.$store.dispatch('getUid')
             .then(uid => uid ? size(uid) : this.$store.commit('stateError', 'login'))
         },
+        async activeSize(){
+            const cart = await this.$store.getters.cart
+            return Object.values(cart)
+            .filter(el => el.id == this.info.id)[0]
+        }
     },
     computed: {
         isAdded(){
             const cart = this.$store.getters.cart;
             return Object.values(cart).filter(el => el.id == this.info.id).length
-        }
+        },
+        
     }
 }
 </script>

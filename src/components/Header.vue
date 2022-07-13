@@ -139,6 +139,12 @@ export default {
                     max-width: 100%;
                 }
             }
+             &-cart {
+                .wrapper{
+                    width: 2vw;
+                    height: 2vw;
+                } 
+            }
         }
 
         .search-input{
@@ -211,6 +217,12 @@ export default {
                     opacity: 100%;
                     visibility: visible;   
                 }
+            }
+             &-cart {
+                .wrapper{
+                    width: 1vw;
+                    height: 1vw;
+                } 
             }
         }
         .nav {
