@@ -1,11 +1,11 @@
 <template>
 <Menu/>
 <div class="content">
-  <h3 style="margin-top: 15vh">{{user}}</h3>
   <Header/>
   <div class="superContainer">
     <router-view></router-view>
   </div>
+  <h3>{{error}}</h3>
   <Footer/>         
   <Layout/>   
 </div>
@@ -26,12 +26,15 @@ export default {
   computed:{
     user(){
       return this.$store.state.user.uid
-    }
+    },
+    error(){
+      return this.$store.getters.error
+    },
   },
   async mounted(){
     this.$store.dispatch('loadCatalog')
     await this.$store.dispatch('change');
-    await this.$store.dispatch('buildCard');
+    await this.$store.dispatch('buildCart');
   },
   components: {
     Header,

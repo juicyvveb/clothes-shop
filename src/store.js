@@ -9,33 +9,33 @@ const store = createStore({
       return {
         catalog: [],
         user: '',
-        card: '',
+        cart: '',
         allSum: 0,
         error: '',
         searchItem: '',
       }
     },
     getters: {
-      card(s){
+      cart(s){
         function filter(){
-          const values = Object.values(s.card).map(el => el.productId);
-          const keys = Object.keys(s.card);
+          const values = Object.values(s.cart).map(el => el.productId);
+          const keys = Object.keys(s.cart);
           let res = s.catalog.filter(el => values.indexOf(el.id) >= 0);
           for(let i = 0; i < res.length; i++){
             for(let k = 0; k < keys.length; k++){
-              if(res[i].id == s.card[keys[k]].productId){
+              if(res[i].id == s.cart[keys[k]].productId){
                 res[i].pid = keys[k];
-                res[i].size = s.card[keys[k]].size
-                res[i].count = s.card[keys[k]].count
+                res[i].size = s.cart[keys[k]].size
+                res[i].count = s.cart[keys[k]].count
               }
             }
           }
           return res
         }
-        return s.card ? filter() : []
+        return s.cart ? filter() : []
       },
       allSum(s, getters){
-        return getters.card ? Object.values(getters.card).reduce((prev,curr) => {
+        return getters.cart ? Object.values(getters.cart).reduce((prev,curr) => {
             return curr.count * curr.price + prev
         }, 0) : 0
       },
@@ -56,10 +56,11 @@ const store = createStore({
       stateUser(state, payload){
         state.user = payload;
       },
-      stateCard(state, payload){
-        state.card = payload;
+      stateCart(state, payload){
+        state.cart = payload;
       },
       stateError(state, payload){
+        console.log(payload)
         state.error = payload;
       },
       searchItem(state, payload){

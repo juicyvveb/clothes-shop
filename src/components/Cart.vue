@@ -3,14 +3,14 @@
             <div class="title">
                 <h3>Shopping Cart</h3>
             </div>
-            <h3 v-if="!card.length " class="warning"> товаров пока нет :( 
+            <h3 v-if="!cart.length " class="warning"> товаров пока нет :( 
                 <h4 v-if="!user">войдите, чтобы добавить товары</h4>
             </h3>
             <div class="wrapper">
                 <div class="cart">
                     <div class="cart-list">
                         <TransitionGroup tag="ul" name="list">
-                            <li v-for="(item,i) in card" :key="item">
+                            <li v-for="(item,i) in cart" :key="item">
                                 <span>{{i+1}}</span>
                                 <router-link :to="`/product/${item.id}`">
                                     <cartItem :info="item"/>
@@ -21,11 +21,11 @@
                     <div class="cart-buttons">
                         <button class="cart-buttons--clear button"
                          @click="clear()"
-                         v-if="card.length">clear cart</button>
+                         v-if="cart.length">clear cart</button>
                         <router-link to="/" class="button">continue shopping</router-link>
                     </div>
                     <div class="cart-total">
-                        <h4 class="cart-total--title">Cart Total: {{card.length}}</h4>
+                        <h4 class="cart-total--title">Cart Total: {{cart.length}}</h4>
                         <div class="cart-total--check">
                             <h5>Total:</h5>
                             <span>{{sum}}</span>
@@ -41,8 +41,8 @@ import cartItem from './cartItem.vue';
 import {clearCart} from '../assets/js/database';
 export default {
     computed: {
-        card(){
-            return this.$store.getters.card
+        cart(){
+            return this.$store.getters.cart
         },
         sum(){
             return this.$store.getters.allSum;

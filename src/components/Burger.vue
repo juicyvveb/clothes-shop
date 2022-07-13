@@ -1,7 +1,7 @@
 <template>
     <div 
-    @click="active = !active, openMenu()"
-    :class="{'active': false, 'burger': true}">
+        @click="active = !active, openMenu()"
+        :class="{'active': false, 'burger': true}">
         <span class="burger-item"></span>
     </div>
 </template>
@@ -42,7 +42,7 @@ export default {
         position: absolute;
         width: 100%;
         height: 1vw;
-        background-color: black;
+        background-color: $black;
         transition: all .2s ease-in-out;  
     }
     &-item {

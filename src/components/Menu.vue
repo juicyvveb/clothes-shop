@@ -1,7 +1,7 @@
 <template>
         <div 
-        :class="{open : isOpen, wrapper: true}" 
-        @click.self="closeMenu($event)">
+            :class="{open : isOpen, wrapper: true}" 
+            @click.self="closeMenu($event)">
             <div  class="menu">
                 <ul class="menu-list">
                     <router-link v-for="(link, i) in links"
@@ -18,8 +18,8 @@
                     <a class="tel" href="#"></a> 
                 </ul>
                <Search/>
-    </div>
-    </div>
+            </div>
+        </div>
 </template>
 
 <script>

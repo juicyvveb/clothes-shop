@@ -5,7 +5,7 @@ import Product from './components/Product.vue';
 // import Login from './components/Login.vue';
 const Login = () => import('./components/Login.vue');
 const Registration = () => import('./components/Registration.vue');
-import Card from './components/Card.vue';
+import Cart from './components/Cart.vue';
 import Art from './components/Art.vue';
 
 const routes = [
@@ -13,7 +13,7 @@ const routes = [
     { path: '/product/:id', component: Product },
     { path: '/login', component: Login },
     { path: '/registration', component: Registration },
-    { path: '/card', component: Card },
+    { path: '/cart', component: Cart },
     { path: '/art/:type', component: Art },
 ]
 

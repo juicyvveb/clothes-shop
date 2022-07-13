@@ -1,8 +1,8 @@
 <template>
-            <Slider/>
-            <Catalog/>
-            <Popular/>
-            <Features/>   
+    <Slider/>
+    <Catalog/>
+    <Popular/>
+    <Features/>   
 </template>
 
 <script>
@@ -14,10 +14,6 @@ import Popular from './Popular.vue';
 
 
 export default {
-  data(){
-    return {
-    }
-  },
   components: {
     Slider,
     Catalog,

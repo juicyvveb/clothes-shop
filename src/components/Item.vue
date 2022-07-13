@@ -17,11 +17,7 @@
                             </div>
                             <div class="rate">
                                 <h4 class="rate--starks">
-                                    <span>@</span>
-                                    <span>@</span>
-                                    <span>@</span>
-                                    <span>@</span>
-                                    <span>@</span>             
+                                    <span v-for="i in 5" :key="i">@</span>            
                                 </h4>
                                 <p class="rate--price">
                                     $3.99
@@ -30,7 +26,7 @@
                             <div class="about">
                                 <div class="size">
                                     <h3>Select size</h3>
-                                    <div class="size-checkbox">
+                                    <div :class="['size-checkbox', forget ? 'forget' : null]">
                                         <input  v-for="(size, i) in sizes"  :key="i" :value="size" :id="size" type="checkbox" v-model="sizeValue">
                                         <label  v-for="(size, i) in sizes" :key="i" :for="size" :class="{active: sizeValue.indexOf(size) >= 0}">
                                             <span>{{size}}</span>
@@ -61,25 +57,44 @@ export default {
         return {
             sizeValue: [],
             sizes: ['xs', 's', 'm', 'l', 'xl', 'xxl'],
+            forget: false,
         }
     },
     mounted(){
-        console.log(this.info.id)
+        console.log(this.activeSize())
     },
     methods: {
         addToCart(productId){
+            const size = (uid) => {
+                if(!this.sizeValue.length){
+                    return new Promise((res) => {
+                    this.forget = true;
+                    setTimeout(() => {
+                        res(null)
+                    }, 500)
+                    })
+                    .then(res => this.forget = res)
+                }
+                return addProduct(uid, productId, this.sizeValue)
+            }
+            
+            //сперва проверка на пользователя
+            //затем проверка на выбранный размер 
             return this.$store.dispatch('getUid')
-            .then(uid => uid ? addProduct(uid, productId, this.sizeValue) : this.$store.commit('stateError', 'login'))
+            .then(uid => uid ? size(uid) : this.$store.commit('stateError', 'login'))
         },
-        show($event){
-            console.log($event.target)
+        async activeSize(){
+            const cart = await this.$store.getters.cart
+            return Object.values(cart)
+            .filter(el => el.id == this.info.id)[0]
         }
     },
     computed: {
         isAdded(){
-            const card = this.$store.getters.card;
-            return Object.values(card).filter(el => el.id == this.info.id).length
-        }
+            const cart = this.$store.getters.cart;
+            return Object.values(cart).filter(el => el.id == this.info.id).length
+        },
+        
     }
 }
 </script>
@@ -221,6 +236,7 @@ export default {
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
+                                    transition: all .3s ease;
                                     span {
                                         font-size: 100%;
                                     }
@@ -228,7 +244,14 @@ export default {
                                 label.active{
                                     border-color:$green;
                                 }
-                            }
+                                
+                                }
+                                &-checkbox.forget{
+                                    label{
+                                        border-color: $red;
+                                        box-shadow: 0px 0px 4px 4px $red;
+                                    }
+                                }
                             }
                             p {
                                 display: none;
@@ -236,7 +259,6 @@ export default {
                     }
                 }
     }
-
   
     //product page
      @media (min-width: $laptop){

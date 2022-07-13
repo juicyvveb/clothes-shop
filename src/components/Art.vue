@@ -12,7 +12,6 @@
                     </label>
                 </ul>
             </div>
-            
         </div>
         <div :class="{'catalog-items': true}">
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
@@ -23,10 +22,13 @@
                     </li>
                     </TransitionGroup>
         </div>
-        <button type="button"
-         class="lazyLoad" 
-         @click="showCount <= items.length ? showCount += showCount : false"
-         v-if="showCount < items.length">Load More</button>
+        <button 
+            type="button"
+            class="lazyLoad" 
+            @click="showCount <= items.length ? showCount += showCount : false"
+            v-if="showCount < items.length" >
+            Load More
+        </button>
     </div>
 </template>
 
@@ -41,7 +43,7 @@ export default {
             choseCount: false,
         }
     },
-     components: {
+    components: {
         Item,
     },
     computed: {

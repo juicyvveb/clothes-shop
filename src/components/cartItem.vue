@@ -5,7 +5,7 @@
                 <img :src="require(`../assets/img/${info?.img}.jpg`)" class="slider-item--images---item">                
             </div>
             <div class="item-title">
-                <h3>{{info?.title}} ID: {{info.id}}</h3>
+                <h3>{{info?.title}}</h3>
                 <p>{{info?.description}}</p>
             </div>
             <div class="item-info">
@@ -15,9 +15,12 @@
                 </div>
                 <div class="item-info--size">
                     <h4>Size:</h4>
-                    <span>{{info?.size}}</span>
+                    <div class="list">
+                        <p v-for="(size, i) in info.size" :key="i">{{size}}<span class="comma">,</span></p>
+                    </div>
+                    <p v-if="!info.size">не выбрано</p>
                 </div>
-                <div class="item-info--color">
+                <div class="item-info--price">
                     <h4>Price:</h4>
                     <span>{{info?.price}}</span>
                 </div>
@@ -52,11 +55,8 @@ export default {
     },
     computed: {
         allSumForItem(){
-            return this.count * this.price
-        },
-        price(){
-            return this.info.price
-        },
+            return this.count * this.info.price
+        }
     },
     methods: {
         async del(pid){
@@ -119,6 +119,28 @@ export default {
                 h4{
                     width: 15%;
                     margin-right: 5%;
+                }
+            }
+            &--size {
+                align-items: center;
+                p {
+                    font-style: italic;
+                    font-size: 12px;
+                    color: $gray;
+                }
+                .list{
+                    display: flex;
+                    align-items: flex-end;
+                    p{
+                        font-size: 16px;
+                        margin-right: 10%;
+                    }
+                   p:last-child{
+                       
+                       .comma {
+                        display: none;
+                       }
+                   }
                 }
             }
             &--count {
