@@ -19,9 +19,7 @@
         <div :class="{'catalog-items': true}">
                     <TransitionGroup  class="catalog-items--list" tag="ul" name="list">
                     <li v-for="(item, i) in catalog" :key="i" v-show="i + 1 <= showCount">
-                        <router-link :to="`/product/${item.id}`">
-                            <Item @click.self.prevent="1" :info="item"/>
-                        </router-link>
+                            <Item  :info="item" />
                     </li>
                     </TransitionGroup>
         </div>
@@ -53,7 +51,8 @@ export default {
     computed: {
         catalog(){
             return this.$store.getters.catalog
-        }
+        },
+        
     }
 }
 </script>

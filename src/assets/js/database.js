@@ -17,6 +17,7 @@ export async function writeUserData(userId, {name, email}){
 const module = {
     actions: {
         async buildCart(context,uid){
+            console.log('buildCard')
             const cart = ref(db, 'users/' + uid + '/cart')
             onValue(cart, (snapshot) => {
                 return uid ? context.commit('stateCart', snapshot.val()) : context.commit('stateCart', null) 
