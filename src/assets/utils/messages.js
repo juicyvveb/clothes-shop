@@ -5,4 +5,6 @@ export default {
     'login': 'войдите, чтобы добавить товар',
     'auth/network-request-failed': 'что-то не так с интернетом',
     'Failed to fetch': 'проблемы с интернетом',
+    'auth/internal-error': 'неверный логин и пароль',
+    'shortPassword': 'короткий пароль'
 }
