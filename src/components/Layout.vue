@@ -39,11 +39,11 @@ export default {
     z-index: 50;
     &-error {
         width: 60%;
-        background: rgb(60, 233, 26);
+        background: rgba(53, 54, 54, 0.8);
         position: fixed;
         top: 40vh; 
         left: 20%;
-        border-radius: 5px;
+        border-radius: 3px;
         &--content {
             padding: 5%;
             p {

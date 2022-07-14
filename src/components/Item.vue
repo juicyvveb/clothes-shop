@@ -22,13 +22,14 @@
                                     <span v-for="i in 5" :key="i">@</span>            
                                 </h4>
                                 <p class="rate--price">
-                                    $3.99
+                                    {{info.price}} $
                                 </p>
                             </div>
                             <div class="about">
                                 <div class="size">
                                     <h3>Select size</h3>
-                                    <div :class="['size-checkbox', forget ? 'forget' : null]">
+                                    <div 
+                                    :class="['size-checkbox', forget ? 'forget' : null, isAdded().length ? 'disabled' : null]">
                                         <input  v-for="(size, i) in sizes"  :key="i" :value="size" :id="info.id+size" type="checkbox" v-model="sizeValue">
                                         <label  v-for="(size, i) in sizes" :key="i" :for="info.id+size" :class="{active: sizeValue.indexOf(size) >= 0, selected: isAdded().indexOf(size) >= 0}">
                                             <span>{{size}}</span>
@@ -131,7 +132,7 @@ export default {
                             padding: 5%;
                             box-sizing: border-box;
                             &-category, &-text {
-                                text-shadow: 1px 1px 2px $black;
+                                color: $black;
                             }
                         }
                         .rate{
@@ -143,6 +144,10 @@ export default {
                             flex-direction: column;
                             justify-content: space-between;
                             box-sizing: border-box;
+                            p{
+                                color: $black;
+                                font-weight: bold;
+                            }
                         }
                         .buttons {
                             width: 100%;
@@ -190,11 +195,16 @@ export default {
                                         font-size: x-large;
                                         color: white;
                                         background-image: none;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
                                         }
                                     }
                             }
                         }
-                        
+                        .disabled {
+                            pointer-events: none;
+                        }
                         .about {
                             padding: 4%;
                             display: flex;
@@ -207,9 +217,9 @@ export default {
                                 align-items: flex-start;
                                 justify-content: space-between;
                                 h3 {
-                                        font-size: 18px;
-                                        font-weight: 700;
-                                        color: #4a4a4a;
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    color: #4a4a4a;
                                 }
                                 p {
                                     font-size: 14px;
