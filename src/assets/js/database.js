@@ -17,7 +17,6 @@ export async function writeUserData(userId, {name, email}){
 const module = {
     actions: {
         async buildCart(context,uid){
-            console.log('buildCard')
             const cart = ref(db, 'users/' + uid + '/cart')
             onValue(cart, (snapshot) => {
                 return uid ? context.commit('stateCart', snapshot.val()) : context.commit('stateCart', null) 
@@ -28,16 +27,13 @@ const module = {
 }
 
 
-export  function addProduct(uid, productId, size){
+export  async function addProduct(uid, productId, size){
     if(!uid){
         return 
     }
     const cartRef = ref(db, 'users/' + uid + '/cart');
     const newProduct = push(cartRef);
     set(newProduct, {productId: productId, count: size.length ? size.length : 1, size: size})
-    .then(res => console.log(res),
-        e => console.log(`erorrrrrr^ ${e}`)
-    )
 }
 
 export function deleteItem(uid, pid){
@@ -50,9 +46,9 @@ export function clearCart(uid){
     remove(delRef)
 }
 
-export function plusItem(uid, pid, id, newCount){
+export function plusItem(uid, pid, id, newCount, size){
     const plusRef = ref(db, 'users/' + uid + '/cart/' + pid );
-    set(plusRef, {productId: id, count: newCount})
+    set(plusRef, {productId: id, count: newCount, size: size})
 }
 
 export {db, module}

@@ -65,7 +65,7 @@ export default {
         },
         async plus(pid, id){
             const uid = await this.$store.dispatch('getUid');
-            plusItem(uid, pid, id, ++this.count)
+            plusItem(uid, pid, id, ++this.count, this.info.size)
         },
         async minus(pid, id){
             const uid = await this.$store.dispatch('getUid');

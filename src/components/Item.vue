@@ -73,6 +73,8 @@ export default {
                     .then(res => this.forget = res)
                 }
                 return addProduct(uid, productId, this.sizeValue)
+                .then(res => res,
+                () => this.$store.commit('stateError', 'no added'))
             }
             
             //сперва проверка на пользователя
@@ -84,11 +86,6 @@ export default {
             const cart =  this.$store.getters.cart;
             return Object.values(cart).filter(el => el.id == this.info.id)[0]?.size || []
         }
-    },
-    watch: {
-        cart(){
-            // console.log(this.isAdded())
-        },      
     },
     computed: {
         cart(){
