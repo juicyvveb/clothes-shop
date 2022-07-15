@@ -5,7 +5,6 @@
   <div class="superContainer">
     <router-view></router-view>
   </div>
-  <h3>{{error}}</h3>
   <Footer/>         
   <Layout/>   
 </div>

@@ -40,7 +40,7 @@ const store = createStore({
         }, 0) : 0
       },
       error(s){
-        return 'Что-то пошло не так' &&  messages[s.error] 
+        return  s.error ? messages[s.error] || 'Что-то пошло не так' : null
       },
       catalog(s){
         function filter(){
@@ -60,8 +60,7 @@ const store = createStore({
         state.cart = payload;
       },
       stateError(state, payload){
-        console.log(payload)
-        state.error = payload;
+        state.error = payload
       },
       searchItem(state, payload){
         state.searchItem = payload;

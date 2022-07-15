@@ -5,7 +5,7 @@
                     <h3 class="content-title">Войти в кабинет</h3>
                     <form action="#" class="content-form form">
                         <input type="email" placeholder="email" class="form-password" v-model="email">
-                        <input type="text" placeholder="password" class="form-password" v-model="password">
+                        <input type="password" @click="isValid = true" placeholder="password" :class="{'form-password': true, valid: !isValid}" v-model="password">
                         <button type="submit" @click.prevent="login()" class="form-button">войти</button>
                         <router-link to="/registration">
                             регистрация
@@ -36,17 +36,24 @@ export default {
         return {
             email: '',
             password: '',
+            isValid: true,
         }
     },
     methods: {
-        async login(){
-            const data = {
-                email: this.email,
-                password: this.password
-            }
-            await this.$store.dispatch('login', data)
-            .then(() => this.$router.push('/'))
-            
+        login(){
+            return new Promise((res, rej) => {
+                return this.password.length >= 6 ? res() : rej(new Error('shortPassword')) 
+            })
+            .then(() => {
+                const data = { email: this.email, password: this.password}
+                this.$store.dispatch('login', data)
+                .then(() => this.$router.push('/')) 
+            },
+            (e) => {
+                this.isValid = false
+                this.$store.commit('stateError', e.message)
+            })
+               
         },
         async logout(){
             await this.$store.dispatch('logout')
@@ -108,6 +115,9 @@ export default {
                         padding: 4% 6%;
                         max-width: 100%;
                         border-radius: 5px;
+                    }
+                    input.valid {
+                    border: 2px solid $red;
                     }
                 }
             }

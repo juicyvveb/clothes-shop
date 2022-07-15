@@ -6,7 +6,7 @@
                     <div class="button">
                         <button @click.stop="close($event)"></button>
                     </div>
-                </div>
+            </div>
         </div>
         
     </div>
@@ -37,13 +37,18 @@ export default {
     top: 0;
     left: 0;
     z-index: 50;
+
     &-error {
+        min-height: 15vh;
         width: 60%;
-        background: rgb(60, 233, 26);
+        background: rgba(101, 185, 112, 0.9);
         position: fixed;
         top: 40vh; 
         left: 20%;
-        border-radius: 5px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &--content {
             padding: 5%;
             p {
@@ -78,19 +83,18 @@ export default {
 
 @media (min-width: $desktop){
     .container {
-   
-    &-error {
-        width: 40%;
-        left: 30%;
-        &--content {
-            padding: 5%;
-            .button{
-            @include buttonCloseBlock;
-                width: 2vw;
-                height: 2vw;
+        &-error {
+            width: 30%;
+            left: 35%;
+            &--content {
+                padding: 5%;
+                .button{
+                @include buttonCloseBlock;
+                    width: 2vw;
+                    height: 2vw;
+                }
             }
         }
-    }
 }
 }
 

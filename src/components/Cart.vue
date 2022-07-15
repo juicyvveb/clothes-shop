@@ -234,11 +234,11 @@ export default {
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateY(-100%);
 }
 
 @media(min-width: $desktop){
-    .list-move, 
+    // .list-move, 
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -247,7 +247,7 @@ export default {
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(0);
+  transform: translate(0 0);
 }
 }
 

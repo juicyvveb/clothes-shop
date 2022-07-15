@@ -6,7 +6,7 @@
                     <form action="#" class="content-form form">
                         <input type="text" placeholder="name" class="form-name" v-model="name">
                         <input type="email" placeholder="email" class="form-email" v-model="email">
-                        <input type="password" placeholder="password" class="form-password" v-model="password">
+                        <input type="password" @click="isValid = true" placeholder="password" :class="{'form-password': true, valid: !isValid}" v-model="password">
                         <button type="submit" @click.prevent="registration()" class="form-button">регистрация</button>
                     </form>
                 </div>
@@ -21,19 +21,42 @@ export default {
             email: '',
             password: '',
             name: '',
+            isValid: true,
         }
     },
     methods: {
+        
+
+
+
         async registration(){
-            const obj = {
-                name: this.name,
-                email: this.email,
-                password: this.password,
-            }
-            this.$store.dispatch('register', obj)
-            .then(() => {
-                this.$router.push('/')
+            return new Promise((res, rej) => {
+                return this.password.length >= 6 ? res() : rej(new Error('shortPassword')) 
             })
+            .then(() => {
+                const obj = {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                }                
+                this.$store.dispatch('register', obj)
+                    .then(() => {
+                        this.$router.push('/')
+                    })
+            },
+            (e) => {
+                this.isValid = false
+                this.$store.commit('stateError', e.message)
+            })
+            // const obj = {
+            //     name: this.name,
+            //     email: this.email,
+            //     password: this.password,
+            // }
+            // this.$store.dispatch('register', obj)
+            // .then(() => {
+            //     this.$router.push('/')
+            // })
         }
     },
 }
@@ -80,6 +103,9 @@ export default {
                         padding: 4% 6%;
                         max-width: 100%;
                         border-radius: 5px;
+                    }
+                    input.valid {
+                    border: 2px solid $red;
                     }
                 }
             }

@@ -22,7 +22,7 @@
                 </div>
                 <div class="item-info--price">
                     <h4>Price:</h4>
-                    <span>{{info?.price}}</span>
+                        <span>{{info?.price}}</span>
                 </div>
                 <div class="item-info--count">
                     <h4>Count</h4>
@@ -263,6 +263,7 @@ export default {
         &-info {
             display: flex;
             flex-grow: 2;
+            width: 35%;
             justify-content: space-between;
             align-items: baseline;
             div{
